@@ -7,7 +7,10 @@ class SignUp extends React.Component {
         this.state = {
             email: '',
             password: '',
-            name: ''
+            firstname: '',
+            lastname: '',
+            gender: '',
+            mobile: ''
         }
     }
     onEmailChange = (event) =>{
@@ -16,8 +19,17 @@ class SignUp extends React.Component {
     onPasswordChange = (event) =>{
         this.setState({password: event.target.value})
     }
-    onNameChange = (event) =>{
-        this.setState({name: event.target.value})
+    onFirstNameChange = (event) =>{
+        this.setState({firstname: event.target.value})
+    }
+    onLastNameChange = (event) =>{
+        this.setState({lastname: event.target.value})
+    }
+    onGenderChange = (event) =>{
+        this.setState({gender: event.target.value})
+    }
+    onMobileChange = (event) =>{
+        this.setState({mobile: event.target.value})
     }
     onSubmitSignIn = () => {
         fetch('http://localhost:3000/Register', {
@@ -26,7 +38,10 @@ class SignUp extends React.Component {
             body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                name: this.state.name
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                gender: this.state.gender,
+                mobile: this.state.mobile
             })
         })
         .then(response => response.json())
@@ -46,7 +61,19 @@ class SignUp extends React.Component {
                             <legend className="f1 fw6 ph0 mh0">Register</legend>
                             <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="name">First Name</label>
-                            <input onChange={this.onNameChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name " />
+                            <input onChange={this.onFirstNameChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name " />
+                            </div>
+                            <div className="mt3">
+                            <label className="db fw6 lh-copy f6" htmlFor="name">Last Name</label>
+                            <input onChange={this.onLastNameChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name " />
+                            </div>
+                            <div className="mt3">
+                            <label className="db fw6 lh-copy f6" htmlFor="name">Gender</label>
+                            <input onChange={this.onGenderChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name " />
+                            </div>
+                            <div className="mt3">
+                            <label className="db fw6 lh-copy f6" htmlFor="name">Mobile Number</label>
+                            <input onChange={this.onMobileChange} className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name " />
                             </div>
                             <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
