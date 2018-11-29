@@ -19,6 +19,9 @@ class SignUp extends React.Component {
     onPasswordChange = (event) =>{
         this.setState({password: event.target.value})
     }
+    onCPasswordChange = (event) =>{
+        this.setState({password: event.target.value})
+    }
     onFirstNameChange = (event) =>{
         this.setState({firstname: event.target.value})
     }
@@ -82,6 +85,10 @@ class SignUp extends React.Component {
                             <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                             <input onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
+                            </div>
+                            <div className="mv3">
+                            <label className="db fw6 lh-copy f6" htmlFor="password">Confirm Password</label>
+                            <input onChange={this.onCPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
                             </div>
                         </fieldset>
                         <div className="">
