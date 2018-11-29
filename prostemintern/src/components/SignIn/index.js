@@ -1,7 +1,5 @@
 import React from 'react';
 
-import React from 'react';
-
 class SignIn extends React.Component {
     constructor(props){
         super(props);
@@ -33,6 +31,9 @@ class SignIn extends React.Component {
             }
         }) 
     }
+    goSignup = () => {
+        this.props.history.push('/signup')
+    }
 
     render(){
         const {onRouteChange} = this.props;
@@ -55,7 +56,7 @@ class SignIn extends React.Component {
                             <input onClick={this.onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" />
                         </div>
                         <div className="lh-copy mt3">
-                            <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>
+                            <p onClick={this.goSignup} className="f6 link dim black db pointer">Register</p>
                         </div>
                     </div>
                 </main>
