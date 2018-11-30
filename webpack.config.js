@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 module.exports = {
-	mode: 'none',
+	mode: 'production',
 	entry: './client/index.js',
 	output: {
 		path: path.resolve(__dirname, 'client'),

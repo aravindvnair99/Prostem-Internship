@@ -8,17 +8,18 @@ class Add extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			name: String,
-    content: String,
-    author: String,
-    month: Number,
-    year: Number
+			name: '',
+			content: '',
+			author: '',
+			month: '',
+			year: '',
+			messageFromServer: '',
 			modalIsOpen: false
 		}
 		this.handleSelectChange = this.handleSelectChange.bind(this);
 		this.onClick = this.onClick.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
-		this.insertNewBlog = this.insertNewBlog.bind(this);
+		this.insertNewArticle = this.insertNewArticle.bind(this);
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 	}
@@ -30,10 +31,11 @@ class Add extends React.Component {
 	closeModal() {
 		this.setState({
 			modalIsOpen: false,
-			description: '',
-			amount: '',
-			month: 'Jan',
-			year: 2016,
+			name: '',
+			content: '',
+			author: '',
+			month: 'Nov',
+			year: 2018,
 			messageFromServer: ''
 		});
 	}
@@ -58,13 +60,14 @@ class Add extends React.Component {
 		}
 	}
 	onClick(e) {
-		this.insertNewBlog(this);
+		this.insertNewArticle(this);
 	}
-	insertNewBlog(e) {
+	insertNewArticle(e) {
 		axios.post('/insert',
 			querystring.stringify({
-				desc: e.state.description,
-				amount: e.state.amount,
+				name: e.state.name,
+				content: e.state.content,
+				author: e.state.author,
 				month: e.state.month,
 				year: e.state.year
 			}), {
@@ -78,14 +81,19 @@ class Add extends React.Component {
 			});
 	}
 	handleTextChange(e) {
-		if (e.target.name == "description") {
+		if (e.target.name == "name") {
 			this.setState({
-				description: e.target.value
+				name: e.target.value
 			});
 		}
-		if (e.target.name == "amount") {
+		if (e.target.name == "content") {
 			this.setState({
-				amount: e.target.value
+				content: e.target.value
+			});
+		}
+		if (e.target.name == "author") {
+			this.setState({
+				author: e.target.value
 			});
 		}
 	}
@@ -97,14 +105,18 @@ class Add extends React.Component {
 					<Modal
 						isOpen={this.state.modalIsOpen}
 						onRequestClose={this.closeModal}
-						contentLabel="Add Blog"
+						contentLabel="Add Article"
 						className="Modal">
 						<Link to={{ pathname: '/', search: '' }} style={{ textDecoration: 'none' }}>
 							<Button bsStyle="danger" bsSize="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
 						</Link><br />
 						<fieldset>
-							<label for="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input>
-							<label for="amount">Amount:</label><input type="number" id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input>
+							<label for="name">Name:</label>
+							<input type="text" id="name" name="name" value={this.state.name} onChange={this.handleTextChange}></input>
+							<label for="content">Content:</label>
+							<input type="textbox" id="content" name="content" value={this.state.content} onChange={this.handleTextChange}></input>
+							<label for="author">Author:</label>
+							<input type="text" id="author" name="author" value={this.state.author} onChange={this.handleTextChange}></input>
 							<label for="month">Month:</label><select id="month" name="month" value={this.state.month} onChange={this.handleSelectChange}>
 								<option value="Jan" id="Jan">January</option>
 								<option value="Feb" id="Feb">Febrary</option>
@@ -120,8 +132,6 @@ class Add extends React.Component {
 								<option value="Dec" id="Dec">December</option>
 							</select>
 							<label for="year">Year:</label><select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-								<option value="2016" id="16">2016</option>
-								<option value="2017" id="17">2017</option>
 								<option value="2018" id="18">2018</option>
 								<option value="2019" id="19">2019</option>
 								<option value="2020" id="20">2020</option>
@@ -129,7 +139,7 @@ class Add extends React.Component {
 						</fieldset>
 						<div className='button-center'>
 							<br />
-							<Button bsStyle="success" bsSize="small" onClick={this.onClick}>Add New Blog</Button>
+							<Button bsStyle="success" bsSize="small" onClick={this.onClick}>Add New Article</Button>
 						</div>
 					</Modal>
 				</div>
@@ -143,7 +153,7 @@ class Add extends React.Component {
 						isOpen={this.state.modalIsOpen}
 						onAfterOpen={this.afterOpenModal}
 						onRequestClose={this.closeModal}
-						contentLabel="Add Blog"
+						contentLabel="Add Article"
 						className="Modal">
 						<div className='button-center'>
 							<h3>{this.state.messageFromServer}</h3>

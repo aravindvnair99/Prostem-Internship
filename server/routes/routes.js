@@ -1,60 +1,62 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var Blog = require('../../models/Blog');
+var Article = require('../../models/article');
 router.get('/', function (req, res) {
 	res.render('index')
 });
 router.route('/insert')
 	.post(function (req, res) {
-		var blog = new Blog();
-		blog.description = req.body.desc;
-		blog.amount = req.body.amount;
-		blog.month = req.body.month;
-		blog.year = req.body.year;
-		blog.save(function (err) {
+		var article = new Article();
+		article.name = req.body.name;
+		article.content = req.body.content;
+		article.author = req.body.author;
+		article.month = req.body.month;
+		article.year = req.body.year;
+		article.save(function (err) {
 			if (err)
 				res.send(err);
-			res.send('Blog successfully added!');
+			res.send('Article successfully added!');
 		});
 	})
 router.route('/update')
 	.post(function (req, res) {
 		const doc = {
-			description: req.body.description,
-			amount: req.body.amount,
+			name: req.body.name,
+			content: req.body.content,
+			author: req.body.author,
 			month: req.body.month,
 			year: req.body.year
 		};
 		console.log(doc);
-		Blog.update({ _id: req.body._id }, doc, function (err, result) {
+		Article.update({ _id: req.body._id }, doc, function (err, result) {
 			if (err)
 				res.send(err);
-			res.send('Blog successfully updated!');
+			res.send('Article successfully updated!');
 		});
 	});
 router.get('/delete', function (req, res) {
 	var id = req.query.id;
-	Blog.find({ _id: id }).remove().exec(function (err, blog) {
+	Article.find({ _id: id }).remove().exec(function (err, article) {
 		if (err)
 			res.send(err)
-		res.send('Blog successfully deleted!');
+		res.send('Article successfully deleted!');
 	})
 });
 router.get('/getAll', function (req, res) {
 	var monthRec = req.query.month;
 	var yearRec = req.query.year;
 	if (monthRec && monthRec != 'All') {
-		Blog.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function (err, blogs) {
+		Article.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function (err, articles) {
 			if (err)
 				res.send(err);
-			res.json(blogs);
+			res.json(articles);
 		});
 	} else {
-		Blog.find({ year: yearRec }, function (err, blogs) {
+		Article.find({ year: yearRec }, function (err, articles) {
 			if (err)
 				res.send(err);
-			res.json(blogs);
+			res.json(articles);
 		});
 	}
 });
