@@ -1,21 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var Expense = require('../../models/Expense');
+var Blog = require('../../models/Blog');
 router.get('/', function (req, res) {
 	res.render('index')
 });
 router.route('/insert')
 	.post(function (req, res) {
-		var expense = new Expense();
-		expense.description = req.body.desc;
-		expense.amount = req.body.amount;
-		expense.month = req.body.month;
-		expense.year = req.body.year;
-		expense.save(function (err) {
+		var blog = new Blog();
+		blog.description = req.body.desc;
+		blog.amount = req.body.amount;
+		blog.month = req.body.month;
+		blog.year = req.body.year;
+		blog.save(function (err) {
 			if (err)
 				res.send(err);
-			res.send('Expense successfully added!');
+			res.send('Blog successfully added!');
 		});
 	})
 router.route('/update')
@@ -27,34 +27,34 @@ router.route('/update')
 			year: req.body.year
 		};
 		console.log(doc);
-		Expense.update({ _id: req.body._id }, doc, function (err, result) {
+		Blog.update({ _id: req.body._id }, doc, function (err, result) {
 			if (err)
 				res.send(err);
-			res.send('Expense successfully updated!');
+			res.send('Blog successfully updated!');
 		});
 	});
 router.get('/delete', function (req, res) {
 	var id = req.query.id;
-	Expense.find({ _id: id }).remove().exec(function (err, expense) {
+	Blog.find({ _id: id }).remove().exec(function (err, blog) {
 		if (err)
 			res.send(err)
-		res.send('Expense successfully deleted!');
+		res.send('Blog successfully deleted!');
 	})
 });
 router.get('/getAll', function (req, res) {
 	var monthRec = req.query.month;
 	var yearRec = req.query.year;
 	if (monthRec && monthRec != 'All') {
-		Expense.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function (err, expenses) {
+		Blog.find({ $and: [{ month: monthRec }, { year: yearRec }] }, function (err, blogs) {
 			if (err)
 				res.send(err);
-			res.json(expenses);
+			res.json(blogs);
 		});
 	} else {
-		Expense.find({ year: yearRec }, function (err, expenses) {
+		Blog.find({ year: yearRec }, function (err, blogs) {
 			if (err)
 				res.send(err);
-			res.json(expenses);
+			res.json(blogs);
 		});
 	}
 });

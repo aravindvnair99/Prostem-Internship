@@ -8,11 +8,11 @@ class Add extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			description: '',
-			amount: '',
-			month: '',
-			year: '',
-			messageFromServer: '',
+			name: String,
+    content: String,
+    author: String,
+    month: Number,
+    year: Number
 			modalIsOpen: false
 		}
 		this.handleSelectChange = this.handleSelectChange.bind(this);
