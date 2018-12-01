@@ -1,31 +1,66 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
+var url = 'mongodb://localhost:27017/Blog';
 
 module.exports = {
-	signup: function (name, email, password) {
-		MongoClient.connect(url, { useNewUrlParser: true }, function (err, database) {
-			database.db('prostemintern').collection('user').insertOne({
+	signup: function(name, email, password){
+		MongoClient.connect(url, function(err, db) {
+		  	db.collection('user').insertOne( {
 				"name": name,
 				"email": email,
 				"password": password
-			}, function (err, result) {
+			},function(err, result){
 				assert.equal(err, null);
-				console.log("Saved the user sign up details.");
+		    	console.log("Saved the user sign up details.");
 			});
 		});
 	},
-	validateSignIn: function (username, password, callback) {
-		MongoClient.connect(url, { useNewUrlParser: true }, function (err, database) {
-			console.log(username, password);
-			database.db('prostemintern').collection('user').findOne({
-				email: username, password: password
-			}, function (err, result) {
-				if (result == null) {
+	getUserInfo: function(username, callback){
+		MongoClient.connect(url, function(err, db){
+			
+			db.collection('user').findOne( { email : username 
+			},function(err, result){
+				if(result==null){
 					console.log('returning false')
 					callback(false)
 				}
-				else {
+				else{
+					console.log('returning true')
+					callback(result);
+				}
+			});
+		});
+	},
+	updateProfile: function(name, password, username, callback){
+		MongoClient.connect(url, function(err, db) {
+		  	db.collection('user').updateOne( 
+		  		{ "email": username },
+		  		{ $set: 
+		  			{ "name" : name,
+		  			  "password" : password 
+		  			}
+		  		},function(err, result){
+				assert.equal(err, null);
+		    	console.log("Updated user details.");
+		    	if(err == null){
+		    		callback(true)
+		    	}
+		    	else{
+		    		callback(false)
+		    	}
+			});
+		});
+	},
+	validateSignIn: function(username, password,callback){
+		MongoClient.connect(url, function(err, db){
+			
+			db.collection('user').findOne( { email : username ,password: password 
+			},function(err, result){
+				if(result==null){
+					console.log('returning false')
+					callback(false)
+				}
+				else{
 					console.log('returning true')
 					callback(true)
 				}
@@ -33,3 +68,5 @@ module.exports = {
 		});
 	}
 }
+
+
