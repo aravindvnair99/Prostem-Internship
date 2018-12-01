@@ -50,9 +50,9 @@ class Signin extends React.Component {
 				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign in</h2>
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />{"\n"}
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />{"\n"}
 
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signIn} type="button">Sign in</button>
 				</form>
@@ -131,19 +131,19 @@ class Signup extends React.Component {
 				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
-					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus />
+					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus />{"\n"}
 					<label for="inputLastName" className="sr-only">Last Name</label>
-					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus />
+					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus />{"\n"}
 					<label for="inputGender" className="sr-only">Gender</label>
-					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus />
+					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus />{"\n"}
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />{"\n"}
 					<label for="inputMobile" className="sr-only">Mobile</label>
-					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus />
+					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus />{"\n"}
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />{"\n"}
 					<label for="inputPasswordConfirm" className="sr-only">Confirm Password</label>
-					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required />
+					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required />{"\n"}
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>
