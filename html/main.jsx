@@ -143,7 +143,7 @@ class Signup extends React.Component {
 					<label for="inputPassword" className="sr-only">Password</label>
 					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br/>
 					<label for="inputPasswordConfirm" className="sr-only">Confirm Password</label>
-					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required /><br/>
+					<input type="password" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required /><br/>
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>
