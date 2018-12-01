@@ -69,7 +69,7 @@ class Signup extends React.Component {
 		super(props);
 		this.signUp = this.signUp.bind(this);
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
-		this.handleLasttNameChange = this.handleLastNameChange.bind(this);
+		this.handleLastNameChange = this.handleLastNameChange.bind(this);
 		this.handleGenderChange = this.handleGenderChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
@@ -131,7 +131,7 @@ class Signup extends React.Component {
 				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
-					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus /><br/>
+					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" required autofocus /><br/>
 					<label for="inputLastName" className="sr-only">Last Name</label>
 					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus /><br/>
 					<label for="inputGender" className="sr-only">Gender</label>
