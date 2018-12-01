@@ -73,15 +73,17 @@ class Signup extends React.Component {
 		this.handleGenderChange = this.handleGenderChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
-
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
+		this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(this);
+
 		this.state = {
 			firstname: '',
 			lastname: '',
 			gender: '',
 			email: '',
 			mobile: '',
-			password: ''
+			password: '',
+			passwordconfirm: ''
 		};
 	}
 	handleFirstNameChange(e) {
@@ -102,6 +104,9 @@ class Signup extends React.Component {
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
 	}
+	handlePasswordConfirmChange(e) {
+		this.setState({ passwordconfirm: e.target.value })
+	}
 	signUp() {
 		axios.post('/signup', {
 			firstname: this.state.firstname,
@@ -109,7 +114,8 @@ class Signup extends React.Component {
 			gender: this.state.lastname,
 			email: this.state.email,
 			mobile: this.state.mobile,
-			password: this.state.password
+			password: this.state.password,
+			passwordconfirm: this.state.passwordconfirm
 		})
 		.then(function (response) {
 			console.log(response);
@@ -136,6 +142,8 @@ class Signup extends React.Component {
 					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus />
 					<label for="inputPassword" className="sr-only">Password</label>
 					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />
+					<label for="inputPasswordConfirm" className="sr-only">Confirm Password</label>
+					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required />
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>
