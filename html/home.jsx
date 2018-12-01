@@ -62,6 +62,8 @@ class AddPost extends React.Component {
 	}
 	render() {
 		return (
+			<style>{'body { background-color: #add8e6; }'}</style>
+
 			<div className="col-md-5">
 				<div className="form-area">
 					<form role="form">
