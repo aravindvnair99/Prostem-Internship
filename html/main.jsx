@@ -1,7 +1,11 @@
+
 var Router = window.ReactRouter.Router;
 var Route = window.ReactRouter.Route;
 var hashHistory = window.ReactRouter.hashHistory;
 var Link = window.ReactRouter.Link;
+
+
+
 
 class Signin extends React.Component {
 	constructor(props) {
@@ -41,6 +45,7 @@ class Signin extends React.Component {
 	}
 	render() {
 		return (
+			
 			<div>
 				<form className="form-signin">
 				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
