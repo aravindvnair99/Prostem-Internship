@@ -47,12 +47,12 @@ class Signin extends React.Component {
 			
 			<div>
 				<form className="form-signin">
-				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
+				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign in</h2>
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />{"\n"}
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus /><br/>
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />{"\n"}
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br/>
 
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signIn} type="button">Sign in</button>
 				</form>
@@ -128,22 +128,22 @@ class Signup extends React.Component {
 		return (
 			<div>
 				<form className="form-signin">
-				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
+				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
-					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus />{"\n"}
+					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus /><br/>
 					<label for="inputLastName" className="sr-only">Last Name</label>
-					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus />{"\n"}
+					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus /><br/>
 					<label for="inputGender" className="sr-only">Gender</label>
-					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus />{"\n"}
+					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus /><br/>
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />{"\n"}
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus /><br/>
 					<label for="inputMobile" className="sr-only">Mobile</label>
-					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus />{"\n"}
+					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus /><br/>
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />{"\n"}
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br/>
 					<label for="inputPasswordConfirm" className="sr-only">Confirm Password</label>
-					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required />{"\n"}
+					<input type="passwordconfirm" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required /><br/>
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>
