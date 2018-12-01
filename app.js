@@ -20,9 +20,6 @@ app.post('/signin', function (req, res) {
       res.send('Wrong username pass')
     }
   });
-  
-  
-  
 })
 
 app.post('/signup', function (req, res) {
