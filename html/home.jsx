@@ -264,5 +264,6 @@ ReactDOM.render(
 		<Route component={ShowPost} path="/"></Route>
 		<Route component={AddPost} path="/addPost(/:id)"></Route>
 		<Route component={ShowProfile} path="/showProfile"></Route>
+		<Route component={Logout} path="/logout"></Route>
 	</Router>,
 document.getElementById('app'));
