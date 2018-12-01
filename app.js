@@ -8,7 +8,7 @@ var post = require('./post')
 
 var app = express();
 
-app.use(session({secret: 'my-secret'}));
+app.use(session({secret: 'my-secret', resave: true, saveUninitialized: true}));
 var sessions;
 
 

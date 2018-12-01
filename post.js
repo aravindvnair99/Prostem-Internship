@@ -1,7 +1,7 @@
 var mongodb = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://localhost:27017/Blog';
+var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
 	addPost: function(title, subject, callback){
@@ -88,5 +88,3 @@ module.exports = {
 		})
 	}
 }
-
-

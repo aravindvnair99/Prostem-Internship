@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://localhost:27017/Blog';
+var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
 	signup: function(name, email, password){
@@ -17,7 +17,6 @@ module.exports = {
 	},
 	getUserInfo: function(username, callback){
 		MongoClient.connect(url, function(err, db){
-			
 			db.collection('user').findOne( { email : username 
 			},function(err, result){
 				if(result==null){
@@ -53,7 +52,6 @@ module.exports = {
 	},
 	validateSignIn: function(username, password,callback){
 		MongoClient.connect(url, function(err, db){
-			
 			db.collection('user').findOne( { email : username ,password: password 
 			},function(err, result){
 				if(result==null){
@@ -68,5 +66,3 @@ module.exports = {
 		});
 	}
 }
-
-
