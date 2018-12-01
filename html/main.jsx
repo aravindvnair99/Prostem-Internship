@@ -46,9 +46,10 @@ class Signin extends React.Component {
 		return (
 			
 			<div>
-				<form className="form-signin">
 				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
-					<h2 className="form-signin-heading">Please sign in</h2>
+
+				<form className="form-signin">
+a					<h2 className="form-signin-heading">Please sign in</h2>
 					<label for="inputEmail" className="sr-only">Email address</label>
 					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus /><br/>
 					<label for="inputPassword" className="sr-only">Password</label>
@@ -74,7 +75,6 @@ class Signup extends React.Component {
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
-		this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(this);
 
 		this.state = {
 			firstname: '',
@@ -82,8 +82,8 @@ class Signup extends React.Component {
 			gender: '',
 			email: '',
 			mobile: '',
-			password: '',
-			passwordconfirm: ''
+			password: ''
+			
 		};
 	}
 	handleFirstNameChange(e) {
@@ -104,9 +104,7 @@ class Signup extends React.Component {
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
 	}
-	handlePasswordConfirmChange(e) {
-		this.setState({ passwordconfirm: e.target.value })
-	}
+	
 	signUp() {
 		axios.post('/signup', {
 			firstname: this.state.firstname,
@@ -114,8 +112,7 @@ class Signup extends React.Component {
 			gender: this.state.lastname,
 			email: this.state.email,
 			mobile: this.state.mobile,
-			password: this.state.password,
-			passwordconfirm: this.state.passwordconfirm
+			password: this.state.password
 		})
 		.then(function (response) {
 			console.log(response);
@@ -127,8 +124,9 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div>
-				<form className="form-signin">
 				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
+
+				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
 					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" required autofocus /><br/>
@@ -142,8 +140,7 @@ class Signup extends React.Component {
 					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus /><br/>
 					<label for="inputPassword" className="sr-only">Password</label>
 					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br/>
-					<label for="inputPasswordConfirm" className="sr-only">Confirm Password</label>
-					<input type="password" onChange={this.handlePasswordConfirmChange} id="inputPassword" className="form-control" placeholder="Confirm Password" required /><br/>
+					
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>
