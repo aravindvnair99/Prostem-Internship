@@ -1,4 +1,3 @@
-
 var Router = window.ReactRouter.Router;
 var Route = window.ReactRouter.Route;
 var hashHistory = window.ReactRouter.hashHistory;
@@ -69,28 +68,47 @@ class Signup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.signUp = this.signUp.bind(this);
-		this.handleNameChange = this.handleNameChange.bind(this);
+		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+		this.handleLasttNameChange = this.handleLastNameChange.bind(this);
+		this.handleGenderChange = this.handleGenderChange.bind(this);
 		this.handleEmailChange = this.handleEmailChange.bind(this);
+		this.handleMobileChange = this.handleMobileChange.bind(this);
+
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.state = {
-			name: '',
+			firstname: '',
+			lastname: '',
+			gender: '',
 			email: '',
+			mobile: '',
 			password: ''
 		};
 	}
-	handleNameChange(e) {
-		this.setState({ name: e.target.value })
+	handleFirstNameChange(e) {
+		this.setState({ firstname: e.target.value })
+	}
+	handleLastNameChange(e) {
+		this.setState({ lastname: e.target.value })
+	}
+	handleGenderChange(e) {
+		this.setState({ gender: e.target.value })
 	}
 	handleEmailChange(e) {
 		this.setState({ email: e.target.value })
+	}
+	handleMobileChange(e) {
+		this.setState({ mobile: e.target.value })
 	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
 	}
 	signUp() {
 		axios.post('/signup', {
-			name: this.state.name,
+			firstname: this.state.firstname,
+			lastname: this.state.lastname,
+			gender: this.state.lastname,
 			email: this.state.email,
+			mobile: this.state.mobile,
 			password: this.state.password
 		})
 		.then(function (response) {
@@ -106,10 +124,16 @@ class Signup extends React.Component {
 				<form className="form-signin">
 				<style>{'body { background:linear-gradient(to right,rgb(203,50,100),rgb(68,166,187)); }'}</style>
 					<h2 className="form-signin-heading">Please sign up</h2>
-					<label for="inputName" className="sr-only">Name</label>
-					<input type="name" onChange={this.handleNameChange} id="inputName" className="form-control" placeholder="Name" required autofocus />
+					<label for="inputFirstName" className="sr-only">First Name</label>
+					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirsttName" className="form-control" placeholder="First Name" required autofocus />
+					<label for="inputLastName" className="sr-only">Last Name</label>
+					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus />
+					<label for="inputGender" className="sr-only">Gender</label>
+					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus />
 					<label for="inputEmail" className="sr-only">Email address</label>
 					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
+					<label for="inputMobile" className="sr-only">Mobile</label>
+					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus />
 					<label for="inputPassword" className="sr-only">Password</label>
 					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
