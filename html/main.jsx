@@ -98,6 +98,21 @@ class Signup extends React.Component {
 	handlePassword2Change(e) {
 		this.setState({ password2: e.target.value })
 	}
+	userExist() {
+		axios.post('/checkEmail', {
+			email: this.state.email
+		})
+			.then(function (response) {
+				if (response.data == 'success') {
+					return true;
+				}
+				else
+					return false;
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
 	signUp() {
 		if (!this.state.firstname) {
 			alert('First name cannot be empty.');
@@ -130,6 +145,9 @@ class Signup extends React.Component {
 					}
 					else if (!this.state.password2) {
 						alert('Confirm password cannot be empty.');
+					}
+					else if (userExist()) {
+						alert('User already exists.');
 					}
 					else if (this.state.password === this.state.password2) {
 						axios.post('/signup', {

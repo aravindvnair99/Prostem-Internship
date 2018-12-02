@@ -46,6 +46,17 @@ app.post('/logout', function (req, res) {
 	res.send('Logged out successfully');
 })
 
+app.post('/checkEmail', (req, res) => {
+	var email = req.body.email;
+	if (email) {
+		user.checkEmail(email, function (result) {
+			if (result) {
+				res.send('success');
+			}
+		})
+	}
+})
+
 app.post('/signup', function (req, res) {
 	var firstname = req.body.firstname;
 	var lastname = req.body.lastname;
@@ -55,8 +66,8 @@ app.post('/signup', function (req, res) {
 	var password = req.body.password;
 	var password2 = req.body.password2;
 	if (firstname && lastname && gender && email && mobile && password && password2) {
-		user.signup(firstname, lastname, gender, email, mobile, password, password2, function(result){
-			if(result){
+		user.signup(firstname, lastname, gender, email, mobile, password, password2, function (result) {
+			if (result) {
 				res.send('success');
 			}
 		})

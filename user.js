@@ -1,9 +1,8 @@
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	signup: function (firstname, lastname, gender, email, mobile, password, password2,callback) {
+	signup: function (firstname, lastname, gender, email, mobile, password, password2, callback) {
 		MongoClient.connect(url, function (err, db) {
 			db.collection('user').insertOne({
 				"firstname": firstname,
@@ -14,14 +13,14 @@ module.exports = {
 				"password": password,
 				"password2": password2
 			}, function (err, result) {
-				if(result == null){
-					console.log('returning false')
+				if (result == null) {
+					console.log('Error saving user details on signup.')
 					callback(false)
-				}else{
-					console.log("Saved the user sign up details.");
+				} else {
+					console.log("Saved user sign up details.");
 					callback(true)
 				}
-				
+
 			});
 		});
 	},
@@ -31,12 +30,28 @@ module.exports = {
 				email: username
 			}, function (err, result) {
 				if (result == null) {
-					console.log('returning false')
+					console.log('getUserInfo failed')
 					callback(false)
 				}
 				else {
-					console.log('returning true')
+					console.log('getUserInfo success')
 					callback(result);
+				}
+			});
+		});
+	},
+	checkEmail: function (username, callback) {
+		MongoClient.connect(url, function (err, db) {
+			db.collection('user').findOne({
+				email: username
+			}, function (err, result) {
+				if (result == null) {
+					console.log('Email does not exist.')
+					callback(false)
+				}
+				else {
+					console.log('Email already exists.')
+					callback(true);
 				}
 			});
 		});
@@ -52,7 +67,6 @@ module.exports = {
 						"password": password
 					}
 				}, function (err, result) {
-					assert.equal(err, null);
 					console.log("Updated user details.");
 					if (err == null) {
 						callback(true)
