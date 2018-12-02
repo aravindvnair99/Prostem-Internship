@@ -51,7 +51,7 @@ module.exports = {
 				}
 				else {
 					console.log('Email already exists.')
-					callback(true);
+					callback(result);
 				}
 			});
 		});

@@ -37,8 +37,8 @@
 	},
 	"main": "app.js",
 	"scripts": {
-		"test": "nodemon app.js",
-		"start": "git status && git add . && git status && git commit && git status && git push && git status && npm test"
+		"start": "nodemon app.js",
+		"test": "git status && git add . && git status && git commit && git status && git push && git status && npm start"
 	},
 	"dependencies": {
 		"body-parser": "^1.17.1",

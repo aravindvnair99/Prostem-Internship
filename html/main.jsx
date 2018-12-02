@@ -60,6 +60,7 @@ class Signup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.signUp = this.signUp.bind(this);
+		this.userExist = this.userExist.bind(this);
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 		this.handleLastNameChange = this.handleLastNameChange.bind(this);
 		this.handleGenderChange = this.handleGenderChange.bind(this);
