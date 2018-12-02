@@ -83,11 +83,11 @@ module.exports = {
 				email: username, password: password
 			}, function (err, result) {
 				if (result == null) {
-					console.log('returning false')
+					console.log('Wrong credentials.')
 					callback(false)
 				}
 				else {
-					console.log('returning true')
+					console.log('Correct credentials.')
 					callback(true)
 				}
 			});

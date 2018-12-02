@@ -22,11 +22,20 @@ class Signin extends React.Component {
 		})
 			.then(function (response) {
 				if (response.data == 'success') {
+					alert('Correct credentials.')
 					window.location.assign('http://localhost:7777/home')
+				}
+				else if (response.data == '') {
+					console.log(response)
+					alert('Wrong credentials.')
+				}
+				else {
+					console.log(response)
+					alert('Wrong credentials.')
 				}
 			})
 			.catch(function (error) {
-				console.log(error);
+				alert(error);
 			});
 
 	}

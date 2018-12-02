@@ -1,19 +1,14 @@
 var express = require("express");
 var session = require('express-session');
-
 var path = require("path");
 var bodyParser = require("body-parser");
 var user = require('./user')
 var post = require('./post')
 
 var app = express();
-
 app.use(session({ secret: 'my-secret', resave: true, saveUninitialized: true }));
 var sessions;
-
-
 app.use(express.static(path.join(__dirname, "/html")));
-
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
@@ -94,7 +89,6 @@ app.post('/addpost', function (req, res) {
 			res.send(result);
 		});
 	}
-
 })
 
 app.post('/updateProfile', function (req, res) {
@@ -131,7 +125,6 @@ app.post('/getPostWithId', function (req, res) {
 		res.send(result)
 	})
 })
-
 
 app.listen(7777, function () {
 	console.log("Started listening on port", 7777);

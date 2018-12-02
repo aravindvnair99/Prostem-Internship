@@ -44,7 +44,6 @@ module.exports = {
 		});
 	},
 	getPost: function (callback) {
-
 		MongoClient.connect(url, function (err, db) {
 			db.collection('post', function (err, collection) {
 				collection.find().toArray(function (err, list) {
@@ -54,7 +53,6 @@ module.exports = {
 		})
 	},
 	deletePost: function (id, callback) {
-
 		MongoClient.connect(url, function (err, db) {
 			db.collection('post').deleteOne({
 				_id: new mongodb.ObjectID(id)
@@ -72,7 +70,6 @@ module.exports = {
 		})
 	},
 	getPostWithId: function (id, callback) {
-
 		MongoClient.connect(url, function (err, db) {
 			db.collection('post').findOne({
 				_id: new mongodb.ObjectID(id)
