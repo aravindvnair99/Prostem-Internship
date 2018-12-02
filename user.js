@@ -47,7 +47,7 @@ module.exports = {
 			}, function (err, result) {
 				if (result == null) {
 					console.log('Email does not exist.')
-					callback(false)
+					callback(false);
 				}
 				else {
 					console.log('Email already exists.')

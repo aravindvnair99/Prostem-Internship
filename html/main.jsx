@@ -104,10 +104,8 @@ class Signup extends React.Component {
 		})
 			.then(function (response) {
 				if (response.data == 'success') {
-					return true;
+					alert('User already exists.');
 				}
-				else
-					return false;
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -145,9 +143,6 @@ class Signup extends React.Component {
 					}
 					else if (!this.state.password2) {
 						alert('Confirm password cannot be empty.');
-					}
-					else if (userExist()) {
-						alert('User already exists.');
 					}
 					else if (this.state.password === this.state.password2) {
 						axios.post('/signup', {
@@ -193,7 +188,7 @@ class Signup extends React.Component {
 						<option value="Female" id="Female">Female</option>
 					</select><br />
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required /><br />
+					<input type="email" onBlur={this.userExist} onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required /><br />
 					<label for="inputMobile" className="sr-only">Mobile</label>
 					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" autocomplete="tel" required /><br />
 					<label for="inputPassword" className="sr-only">Password</label>

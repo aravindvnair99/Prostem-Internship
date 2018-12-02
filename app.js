@@ -46,7 +46,7 @@ app.post('/logout', function (req, res) {
 	res.send('Logged out successfully');
 })
 
-app.post('/checkEmail', (req, res) => {
+app.post('/checkEmail', function (req, res) {
 	var email = req.body.email;
 	if (email) {
 		user.checkEmail(email, function (result) {
