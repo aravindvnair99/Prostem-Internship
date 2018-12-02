@@ -30,13 +30,13 @@ class AddPost extends React.Component {
 			subject: this.state.subject,
 			id: this.props.params.id
 		})
-		.then(function (response) {
-			console.log('reponse from add post is ', response);
-			hashHistory.push('/')
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+			.then(function (response) {
+				console.log('reponse from add post is ', response);
+				hashHistory.push('/')
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	}
 	getPostWithId() {
 		var id = this.props.params.id;
@@ -44,15 +44,15 @@ class AddPost extends React.Component {
 		axios.post('/getPostWithId', {
 			id: id
 		})
-		.then(function (response) {
-			if (response) {
-				self.setState({ title: response.data.title });
-				self.setState({ subject: response.data.subject });
-			}
-		})
-		.catch(function (error) {
-			console.log('error is ', error);
-		});
+			.then(function (response) {
+				if (response) {
+					self.setState({ title: response.data.title });
+					self.setState({ subject: response.data.subject });
+				}
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
 	}
 	handleTitleChange(e) {
 		this.setState({ title: e.target.value })
@@ -62,8 +62,6 @@ class AddPost extends React.Component {
 	}
 	render() {
 		return (
-			<style>{'body { background-color: #add8e6; }'}</style>
-
 			<div className="col-md-5">
 				<div className="form-area">
 					<form role="form">
@@ -109,14 +107,14 @@ class ShowProfile extends React.Component {
 			name: this.state.name,
 			password: this.state.password
 		})
-		.then(function (response) {
-			if (response) {
-				hashHistory.push('/')
-			}
-		})
-		.catch(function (error) {
-			console.log('error is ', error);
-		});
+			.then(function (response) {
+				if (response) {
+					hashHistory.push('/')
+				}
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
 	}
 	handleNameChange(e) {
 		this.setState({ name: e.target.value })
@@ -128,16 +126,16 @@ class ShowProfile extends React.Component {
 		var self = this;
 		axios.post('/getProfile', {
 		})
-		.then(function (response) {
-			if (response) {
-				self.setState({ name: response.data.name });
-				self.setState({ email: response.data.email });
-				self.setState({ password: response.data.password });
-			}
-		})
-		.catch(function (error) {
-			console.log('error is ', error);
-		});
+			.then(function (response) {
+				if (response) {
+					self.setState({ name: response.data.name });
+					self.setState({ email: response.data.email });
+					self.setState({ password: response.data.password });
+				}
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
 	}
 	render() {
 		return (
@@ -178,25 +176,25 @@ class ShowPost extends React.Component {
 			axios.post('/deletePost', {
 				id: id
 			})
-			.then(function (response) {
-				self.getPost();
-			})
-			.catch(function (error) {
-				console.log('Error is ', error);
-			});
+				.then(function (response) {
+					self.getPost();
+				})
+				.catch(function (error) {
+					console.log('Error is ', error);
+				});
 		}
 	}
 	getPost() {
 		var self = this;
 		axios.post('/getPost', {
 		})
-		.then(function (response) {
-			console.log('res is ', response);
-			self.setState({ posts: response.data })
-		})
-		.catch(function (error) {
-			console.log('error is ', error);
-		});
+			.then(function (response) {
+				console.log('res is ', response);
+				self.setState({ posts: response.data })
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
 	}
 	componentDidMount() {
 		this.getPost();
@@ -239,51 +237,20 @@ class ShowPost extends React.Component {
 	}
 }
 
-class Signin extends React.Component {
+class Logout extends React.Component {
 	constructor(props) {
 		super(props);
 		this.signIn = this.signIn.bind(this);
-		this.handleEmailChange = this.handleEmailChange.bind(this);
-		this.handlePasswordChange = this.handlePasswordChange.bind(this);
-		this.state = {
-			email: '',
-			password: ''
-		};
 	}
 	signIn() {
-		axios.post('/signin', {
-			email: this.state.email,
-			password: this.state.password
-		})
-		.then(function (response) {
-			if (response.data == 'success') {
-				window.location.assign('http://localhost:7777/home')
-			}
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
-	handleEmailChange(e) {
-		this.setState({ email: e.target.value })
-	}
-	handlePasswordChange(e) {
-		this.setState({ password: e.target.value })
+		window.location.assign('/')
 	}
 	render() {
 		return (
 			<div>
 				<form className="form-signin">
-					<h2 className="form-signin-heading">Please sign in</h2>
-					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus />
-					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required />
-					<button className="btn btn-lg btn-primary btn-block" onClick={this.signIn} type="button">Sign in</button>
+					<button className="btn btn-lg btn-primary" onClick={this.signIn} type="button">Click here to log out</button>
 				</form>
-				<div>
-					<Link to="/signup">{'Signup'}</Link>
-				</div>
 			</div>
 		)
 	}
@@ -294,6 +261,6 @@ ReactDOM.render(
 		<Route component={ShowPost} path="/"></Route>
 		<Route component={AddPost} path="/addPost(/:id)"></Route>
 		<Route component={ShowProfile} path="/showProfile"></Route>
-		<Route component={Signin} path="/logout"></Route>
+		<Route component={Logout} path="/logout"></Route>
 	</Router>,
 	document.getElementById('app'));
