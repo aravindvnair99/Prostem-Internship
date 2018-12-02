@@ -97,36 +97,64 @@ class Signup extends React.Component {
 	}
 	handlePassword2Change(e) {
 		this.setState({ password2: e.target.value })
-		if (this.state.password === this.state.password2)
-			console.log("Good")
-		else {
-			console.log("Bad")
-			this.state.password2 = ''
-		}
 	}
 	signUp() {
-		if(this.state.password === this.state.password2 ){
-			axios.post('/signup', {
-				firstname: this.state.firstname,
-				lastname: this.state.lastname,
-				gender: this.state.gender,
-				email: this.state.email,
-				mobile: this.state.mobile,
-				password: this.state.password,
-				password2: this.state.password2
-			})
-				.then(function (response) {
-					if (response.data == 'success') {
-						window.location.assign('http://localhost:7777/')
-					}
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-		}else{
-			console.log("Password error");
+		if (!this.state.firstname) {
+			alert('First name cannot be empty.');
 		}
-		
+		else if (typeof this.state.firstname !== "undefined") {
+			if (!this.state.firstname.match(/^[a-zA-Z]+$/)) {
+				alert('First name can contain only letters.');
+			}
+			else if (!this.state.lastname) {
+				alert('Last name cannot be empty.');
+			}
+			else if (typeof this.state.lastname !== "undefined") {
+				if (!this.state.lastname.match(/^[a-zA-Z]+$/)) {
+					alert('Last name can contain only letters.');
+				}
+				else if (!this.state.gender) {
+					alert('Gender cannot be empty.');
+				}
+				else if (typeof this.state.email !== "undefined") {
+					let lastAtPos = this.state.email.lastIndexOf('@');
+					let lastDotPos = this.state.email.lastIndexOf('.');
+					if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.email.indexOf('@@') == -1 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
+						alert("Email is invalid.");
+					}
+					else if (!this.state.mobile) {
+						alert('Mobile cannot be empty.');
+					}
+					else if (!this.state.password) {
+						alert('Password cannot be empty.');
+					}
+					else if (!this.state.password2) {
+						alert('Confirm password cannot be empty.');
+					}
+					else if (this.state.password === this.state.password2) {
+						axios.post('/signup', {
+							firstname: this.state.firstname,
+							lastname: this.state.lastname,
+							gender: this.state.gender,
+							email: this.state.email,
+							mobile: this.state.mobile,
+							password: this.state.password,
+							password2: this.state.password2
+						})
+							.then(function (response) {
+								if (response.data == 'success') {
+									window.location.assign('http://localhost:7777/')
+								}
+							})
+							.catch(function (error) {
+								console.log(error);
+							});
+					} else {
+						alert("Passwords don't match");
+					}
+				}
+			}
+		}
 	}
 	render() {
 		return (
@@ -140,8 +168,12 @@ class Signup extends React.Component {
 					<input type="name" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" autocomplete="fname" required autofocus /><br />
 					<label for="inputLastName" className="sr-only">Last Name</label>
 					<input type="name" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" autocomplete="lname" required /><br />
-					<label for="inputGender" className="sr-only">Gender</label>
-					<input type="text" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" autocomplete="sex" required /><br />
+					<label for="inputGender" className="sr-only">Gender:</label>
+					<select id="inputGender" onChange={this.handleGenderChange} name="year" className="form-control" placeholder="Gender" autocomplete="sex" required>
+						<option>Gender</option>
+						<option value="Male" id="Male">Male</option>
+						<option value="Female" id="Female">Female</option>
+					</select><br />
 					<label for="inputEmail" className="sr-only">Email address</label>
 					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required /><br />
 					<label for="inputMobile" className="sr-only">Mobile</label>
