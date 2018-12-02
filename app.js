@@ -55,7 +55,11 @@ app.post('/signup', function (req, res) {
 	var password = req.body.password;
 	var password2 = req.body.password2;
 	if (firstname && lastname && gender && email && mobile && password && password2) {
-		user.signup(firstname, lastname, gender, email, mobile, password, password2)
+		user.signup(firstname, lastname, gender, email, mobile, password, password2, function(result){
+			if(result){
+				res.send('success');
+			}
+		})
 	}
 	else {
 		res.send('Failure');
