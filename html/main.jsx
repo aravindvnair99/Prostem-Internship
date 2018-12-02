@@ -97,7 +97,7 @@ class Signup extends React.Component {
 	}
 	handlePassword2Change(e) {
 		this.setState({ password2: e.target.value })
-		if (this.state.password == this.state.password2)
+		if (this.state.password === this.state.password2)
 			console.log("Good")
 		else {
 			console.log("Bad")
@@ -105,21 +105,26 @@ class Signup extends React.Component {
 		}
 	}
 	signUp() {
-		axios.post('/signup', {
-			firstname: this.state.firstname,
-			lastname: this.state.lastname,
-			gender: this.state.gender,
-			email: this.state.email,
-			mobile: this.state.mobile,
-			password: this.state.password,
-			password2: this.state.password2
-		})
-			.then(function (response) {
-				console.log(response);
+		if(this.state.password === this.state.password2 ){
+			axios.post('/signup', {
+				firstname: this.state.firstname,
+				lastname: this.state.lastname,
+				gender: this.state.gender,
+				email: this.state.email,
+				mobile: this.state.mobile,
+				password: this.state.password,
+				password2: this.state.password2
 			})
-			.catch(function (error) {
-				console.log(error);
-			});
+				.then(function (response) {
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}else{
+			console.log("Password error");
+		}
+		
 	}
 	render() {
 		return (
