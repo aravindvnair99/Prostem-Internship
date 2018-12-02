@@ -3,9 +3,6 @@ var Route = window.ReactRouter.Route;
 var hashHistory = window.ReactRouter.hashHistory;
 var Link = window.ReactRouter.Link;
 
-
-
-
 class Signin extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,7 +16,6 @@ class Signin extends React.Component {
 	}
 	signIn() {
 		axios.post('/signin', {
-
 			email: this.state.email,
 			password: this.state.password,
 
@@ -36,11 +32,9 @@ class Signin extends React.Component {
 	}
 	handleEmailChange(e) {
 		this.setState({ email: e.target.value })
-
 	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
-
 	}
 	render() {
 		return (
@@ -49,10 +43,9 @@ class Signin extends React.Component {
 				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign in</h2>
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus /><br />
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required autofocus /><br />
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br />
-
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" autocomplete="current-password" required /><br />
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signIn} type="button">Sign in</button>
 				</form>
 				<div>
@@ -104,7 +97,7 @@ class Signup extends React.Component {
 	}
 	handlePassword2Change(e) {
 		this.setState({ password2: e.target.value })
-		if(this.state.password == this.state.password2)
+		if (this.state.password == this.state.password2)
 			console.log("Good")
 		else {
 			console.log("Bad")
@@ -132,20 +125,20 @@ class Signup extends React.Component {
 		return (
 			<div>
 				<style>
-				{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
+					{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
 				</style>
 				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
 					<input type="name" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" autocomplete="fname" required autofocus /><br />
 					<label for="inputLastName" className="sr-only">Last Name</label>
-					<input type="name" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" autocomplete="lname" required autofocus /><br />
+					<input type="name" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" autocomplete="lname" required /><br />
 					<label for="inputGender" className="sr-only">Gender</label>
-					<input type="text" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" autocomplete="sex" required autofocus /><br />
+					<input type="text" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" autocomplete="sex" required /><br />
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required autofocus /><br />
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required /><br />
 					<label for="inputMobile" className="sr-only">Mobile</label>
-					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" autocomplete="tel" required autofocus /><br />
+					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" autocomplete="tel" required /><br />
 					<label for="inputPassword" className="sr-only">Password</label>
 					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" autocomplete="new-password" required /><br />
 					<label for="inputPassword2" className="sr-only">Confirm Password</label>
