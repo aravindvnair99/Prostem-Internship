@@ -3,11 +3,14 @@ var assert = require('assert');
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	signup: function (name, email, password) {
+	signup: function (firstname, lastname, gender, email, mobile, password) {
 		MongoClient.connect(url, function (err, db) {
 			db.collection('user').insertOne({
-				"name": name,
+				"firstname": firstname,
+				"lastname": lastname,
+				"gender": gender,
 				"email": email,
+				"mobile": mobile,
 				"password": password
 			}, function (err, result) {
 				assert.equal(err, null);

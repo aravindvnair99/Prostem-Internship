@@ -73,15 +73,15 @@ class Signup extends React.Component {
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
-
+		this.handlePassword2Change = this.handlePassword2Change.bind(this);
 		this.state = {
 			firstname: '',
 			lastname: '',
 			gender: '',
 			email: '',
 			mobile: '',
-			password: ''
-
+			password: '',
+			password2: ''
 		};
 	}
 	handleFirstNameChange(e) {
@@ -102,15 +102,24 @@ class Signup extends React.Component {
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
 	}
-
+	handlePassword2Change(e) {
+		this.setState({ password2: e.target.value })
+		if(this.state.password == this.state.password2)
+			console.log("Good")
+		else {
+			console.log("Bad")
+			this.state.password2 = ''
+		}
+	}
 	signUp() {
 		axios.post('/signup', {
 			firstname: this.state.firstname,
 			lastname: this.state.lastname,
-			gender: this.state.lastname,
+			gender: this.state.gender,
 			email: this.state.email,
 			mobile: this.state.mobile,
-			password: this.state.password
+			password: this.state.password,
+			password2: this.state.password2
 		})
 			.then(function (response) {
 				console.log(response);
@@ -122,23 +131,25 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div>
-				<style>{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}</style>
-
+				<style>
+				{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
+				</style>
 				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
-					<input type="firstname" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" required autofocus /><br />
+					<input type="name" onChange={this.handleFirstNameChange} id="inputFirstName" className="form-control" placeholder="First Name" autocomplete="fname" required autofocus /><br />
 					<label for="inputLastName" className="sr-only">Last Name</label>
-					<input type="lastname" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" required autofocus /><br />
+					<input type="name" onChange={this.handleLastNameChange} id="inputLastName" className="form-control" placeholder="Last Name" autocomplete="lname" required autofocus /><br />
 					<label for="inputGender" className="sr-only">Gender</label>
-					<input type="gender" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" required autofocus /><br />
+					<input type="text" onChange={this.handleGenderChange} id="inputGender" className="form-control" placeholder="Gender" autocomplete="sex" required autofocus /><br />
 					<label for="inputEmail" className="sr-only">Email address</label>
-					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" required autofocus /><br />
+					<input type="email" onChange={this.handleEmailChange} id="inputEmail" className="form-control" placeholder="Email address" autocomplete="email" required autofocus /><br />
 					<label for="inputMobile" className="sr-only">Mobile</label>
-					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" required autofocus /><br />
+					<input type="mobile" onChange={this.handleMobileChange} id="inputMobile" className="form-control" placeholder="Mobile" autocomplete="tel" required autofocus /><br />
 					<label for="inputPassword" className="sr-only">Password</label>
-					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" required /><br />
-
+					<input type="password" onChange={this.handlePasswordChange} id="inputPassword" className="form-control" placeholder="Password" autocomplete="new-password" required /><br />
+					<label for="inputPassword2" className="sr-only">Confirm Password</label>
+					<input type="password" onChange={this.handlePassword2Change} id="inputPassword2" className="form-control" placeholder="Confirm Password" autocomplete="off" required /><br />
 					<button className="btn btn-lg btn-primary btn-block" onClick={this.signUp} type="button">Sign up</button>
 				</form>
 				<div>

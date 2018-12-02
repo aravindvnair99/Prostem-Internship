@@ -47,12 +47,15 @@ app.post('/logout', function (req, res) {
 })
 
 app.post('/signup', function (req, res) {
-	var name = req.body.name;
+	var firstname = req.body.firstname;
+	var lastname = req.body.lastname;
+	var gender = req.body.gender;
 	var email = req.body.email;
+	var mobile = req.body.mobile;
 	var password = req.body.password;
 
-	if (name && email && password) {
-		user.signup(name, email, password)
+	if (firstname && lastname && gender && email && mobile && password) {
+		user.signup(firstname, lastname, gender, email, mobile, password)
 	}
 	else {
 		res.send('Failure');
