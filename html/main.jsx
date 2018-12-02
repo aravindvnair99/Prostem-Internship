@@ -116,7 +116,9 @@ class Signup extends React.Component {
 				password2: this.state.password2
 			})
 				.then(function (response) {
-					console.log(response);
+					if (response.data == 'success') {
+						window.location.assign('http://localhost:7777/')
+					}
 				})
 				.catch(function (error) {
 					console.log(error);
