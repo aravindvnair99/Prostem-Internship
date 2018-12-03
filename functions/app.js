@@ -29,7 +29,8 @@ app.get('/home', function (req, res) {
 		res.sendFile(__dirname + '/views/home.html');
 	}
 	else {
-		res.send('Unauthorized access');
+		res.sendFile(__dirname + '/views/home.html');
+		// res.send('Unauthorized access');
 	}
 })
 
