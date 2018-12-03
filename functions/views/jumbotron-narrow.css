@@ -6,14 +6,16 @@ body {
 
 table {
 	border-collapse: collapse;
-	table-layout: auto;
-	max-width: 30%;
+	table-layout: fixed;
+	max-width: 310px;
+	
 }
 
 table td {
 	border: solid 1px #fab;
-	width: 25px;
+	max-width: 25px;
 	word-wrap: normal;
+	height: 150px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
