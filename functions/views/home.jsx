@@ -229,6 +229,9 @@ class ShowPost extends React.Component {
 	render() {
 		return (
 			<div className="tableSize">
+			<style>
+				{'table {border-collapse:collapse; table-layout:fixed; width:310px;}; table td {border:solid 1px #fab; width:100px; word-wrap:break-word;} }'}
+			</style>
 				<table className="table table-striped">
 					<thead>
 						<tr>
