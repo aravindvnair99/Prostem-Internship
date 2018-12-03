@@ -83,15 +83,15 @@ class AddPost extends React.Component {
 class ShowProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleNameChange = this.handleFirstNameChange.bind(this);
+		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.updateProfile = this.updateProfile.bind(this);
 		this.getProfile = this.getProfile.bind(this);
 		this.state = {
 			firstname: '',
+			lastname: '',
 			email: '',
-			password: '',
-			id: ''
+			password: ''
 		};
 	}
 	componentDidMount() {
@@ -117,7 +117,7 @@ class ShowProfile extends React.Component {
 			});
 	}
 	handleFirstNameChange(e) {
-		this.setState({ name: e.target.value })
+		this.setState({ firstname: e.target.value })
 	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
@@ -127,6 +127,7 @@ class ShowProfile extends React.Component {
 		axios.post('/getProfile', {
 		})
 			.then(function (response) {
+				console.log(response)
 				if (response) {
 					self.setState({ firstname: response.data.firstname });
 					self.setState({ email: response.data.email });
@@ -144,7 +145,7 @@ class ShowProfile extends React.Component {
 					<form role="form">
 						<br styles="clear:both" />
 						<div className="form-group">
-							<input value={this.state.firstname} type="text" onChange={this.handleFirstNameChange} className="form-control" placeholder="Name" required />
+							<input value={this.state.firstname} type="text" onChange={this.handleFirstNameChange} className="form-control" placeholder="First Name" required />
 						</div>
 						<div className="form-group">
 							<input value={this.state.password} type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="Password" required />
