@@ -1,3 +1,12 @@
+const functions = require('firebase-functions');
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+//  response.send("Hello from Firebase!");
+// });
+
 var express = require("express");
 var session = require('express-session');
 var path = require("path");
@@ -8,16 +17,16 @@ var post = require('./post')
 var app = express();
 app.use(session({ secret: 'my-secret', resave: true, saveUninitialized: true }));
 var sessions;
-app.use(express.static(path.join(__dirname, "/html")));
+app.use(express.static(path.join(__dirname, "/views")));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/html/index.html');
+	res.sendFile(__dirname + '/views/index.html');
 })
 
 app.get('/home', function (req, res) {
 	if (sessions && sessions.username) {
-		res.sendFile(__dirname + '/html/home.html');
+		res.sendFile(__dirname + '/views/home.html');
 	}
 	else {
 		res.send('Unauthorized access');
@@ -114,6 +123,7 @@ app.post('/deletePost', function (req, res) {
 })
 
 app.post('/getProfile', function (req, res) {
+    console.log(sessions)
 	user.getUserInfo(sessions.username, function (result) {
 		res.send(result)
 	})
@@ -126,6 +136,8 @@ app.post('/getPostWithId', function (req, res) {
 	})
 })
 
-app.listen(7777, function () {
-	console.log("Started listening on port", 7777);
-})
+// app.listen(7777, function () {
+// 	console.log("Started listening on port", 7777);
+// })
+
+exports.app = functions.https.onRequest(app);
