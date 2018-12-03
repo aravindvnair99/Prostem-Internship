@@ -85,7 +85,6 @@ class ShowProfile extends React.Component {
 		super(props);
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 		this.handleLastNameChange = this.handleLastNameChange.bind(this);
-		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleMobileChange = this.handleMobileChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.updateProfile = this.updateProfile.bind(this);
@@ -110,7 +109,6 @@ class ShowProfile extends React.Component {
 		axios.post('/updateProfile', {
 			firstname: this.state.firstname,
 			lastname: this.state.lastname,
-			email: this.state.email,
 			mobile: this.state.mobile,
 			password: this.state.password,
 		})
@@ -128,9 +126,6 @@ class ShowProfile extends React.Component {
 	}
 	handleLastNameChange(e) {
 		this.setState({ lastname: e.target.value })
-	}
-	handleEmailChange(e) {
-		this.setState({ email: e.target.value })
 	}
 	handleMobileChange(e) {
 		this.setState({ mobile: e.target.value })
@@ -169,7 +164,7 @@ class ShowProfile extends React.Component {
 							<input value={this.state.lastname} type="text" onChange={this.handleLastNameChange} className="form-control" placeholder="Last Name" required />
 						</div>
 						<div className="form-group">
-							<input value={this.state.email} type="text" onChange={this.handleEmailChange} className="form-control" placeholder="Email" required />
+							<input value={this.state.email} type="text" className="form-control" placeholder="Email" disabled="true" />
 						</div>
 						<div className="form-group">
 							<input value={this.state.mobile} type="text" onChange={this.handleMobileChange} className="form-control" placeholder="Mobile" required />

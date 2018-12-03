@@ -100,10 +100,12 @@ app.post('/addpost', function (req, res) {
 })
 
 app.post('/updateProfile', function (req, res) {
-	var name = req.body.name;
+	var firstname = req.body.firstname;
+	var lastname = req.body.lastname;
+	var mobile = req.body.mobile;
 	var password = req.body.password;
 
-	user.updateProfile(name, password, sessions.username, function (result) {
+	user.updateProfile(firstname, lastname, mobile, password, sessions.username, function (result) {
 		res.send(result);
 	})
 })

@@ -54,14 +54,16 @@ module.exports = {
 			});
 		});
 	},
-	updateProfile: function (name, password, username, callback) {
+	updateProfile: function (firstname, lastname, mobile, password, username, callback) {
 		MongoClient.connect(url, function (err, db) {
 			db.collection('user').updateOne(
 				{ "email": username },
 				{
 					$set:
 					{
-						"name": name,
+						"firstname": firstname,
+						"lastname": lastname,
+						"mobile": mobile,
 						"password": password
 					}
 				}, function (err, result) {

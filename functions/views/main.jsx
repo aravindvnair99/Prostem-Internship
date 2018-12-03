@@ -160,8 +160,7 @@ class Signup extends React.Component {
 							gender: this.state.gender,
 							email: this.state.email,
 							mobile: this.state.mobile,
-							password: this.state.password,
-							password2: this.state.password2
+							password: this.state.password
 						})
 							.then(function (response) {
 								if (response.data == 'success') {
