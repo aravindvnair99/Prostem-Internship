@@ -83,15 +83,15 @@ class AddPost extends React.Component {
 class ShowProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleNameChange = this.handleNameChange.bind(this);
+		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.updateProfile = this.updateProfile.bind(this);
 		this.getProfile = this.getProfile.bind(this);
 		this.state = {
-			name: '',
+			firstname: '',
+			lastname: '',
 			email: '',
-			password: '',
-			id: ''
+			password: ''
 		};
 	}
 	componentDidMount() {
@@ -104,7 +104,7 @@ class ShowProfile extends React.Component {
 	updateProfile() {
 		var self = this;
 		axios.post('/updateProfile', {
-			name: this.state.name,
+			firstname: this.state.firstname,
 			password: this.state.password
 		})
 			.then(function (response) {
@@ -116,8 +116,8 @@ class ShowProfile extends React.Component {
 				console.log('error is ', error);
 			});
 	}
-	handleNameChange(e) {
-		this.setState({ name: e.target.value })
+	handleFirstNameChange(e) {
+		this.setState({ firstname: e.target.value })
 	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
@@ -127,8 +127,9 @@ class ShowProfile extends React.Component {
 		axios.post('/getProfile', {
 		})
 			.then(function (response) {
+				console.log(response)
 				if (response) {
-					self.setState({ name: response.data.name });
+					self.setState({ firstname: response.data.firstname });
 					self.setState({ email: response.data.email });
 					self.setState({ password: response.data.password });
 				}
@@ -144,7 +145,7 @@ class ShowProfile extends React.Component {
 					<form role="form">
 						<br styles="clear:both" />
 						<div className="form-group">
-							<input value={this.state.name} type="text" onChange={this.handleNameChange} className="form-control" placeholder="Name" required />
+							<input value={this.state.firstname} type="text" onChange={this.handleFirstNameChange} className="form-control" placeholder="First Name" required />
 						</div>
 						<div className="form-group">
 							<input value={this.state.password} type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="Password" required />
