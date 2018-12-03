@@ -46,6 +46,6 @@
 		"express-session": "^1.15.6",
 		"firebase-admin": "~6.0.0",
 		"firebase-functions": "^2.1.0",
-		"mongodb": "~2.2.30"
+		"mongodb": "2.2.30"
 	}
 }
