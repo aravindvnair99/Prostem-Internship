@@ -4,6 +4,18 @@ body {
   padding-bottom: 20px;
 }
 
+table{
+  table-layout: fixed;
+  width: 100%;
+}
+/* .tableSize{
+  display : table;
+} */
+/* tr th td {
+  width: 10vw;
+  height: 1s0vw;
+} */
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
