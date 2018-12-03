@@ -83,7 +83,7 @@ class AddPost extends React.Component {
 class ShowProfile extends React.Component {
 	constructor(props) {
 		super(props);
-		this.handleNameChange = this.handleFirstNameChange.bind(this);
+		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.updateProfile = this.updateProfile.bind(this);
 		this.getProfile = this.getProfile.bind(this);
