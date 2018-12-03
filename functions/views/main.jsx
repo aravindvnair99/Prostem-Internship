@@ -23,7 +23,7 @@ class Signin extends React.Component {
 			.then(function (response) {
 				if (response.data == 'success') {
 					alert('Correct credentials.')
-					window.location.assign('http://localhost:7777/home')
+					window.location.assign('http://localhost:5000/home')
 				}
 				else if (response.data == '') {
 					console.log(response)
@@ -166,7 +166,7 @@ class Signup extends React.Component {
 						})
 							.then(function (response) {
 								if (response.data == 'success') {
-									window.location.assign('http://localhost:7777/')
+									window.location.assign('http://localhost:5000/')
 								}
 							})
 							.catch(function (error) {

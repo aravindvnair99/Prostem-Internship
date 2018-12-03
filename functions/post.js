@@ -1,6 +1,5 @@
 var mongodb = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
 				"title": title,
 				"subject": subject
 			}, function (err, result) {
-				assert.equal(err, null);
+				// assert.equal(err, null);
 				console.log("Saved the blog post details.");
 				if (err == null) {
 					callback(true)
@@ -32,7 +31,7 @@ module.exports = {
 						"subject": subject
 					}
 				}, function (err, result) {
-					assert.equal(err, null);
+					// assert.equal(err, null);
 					console.log("Updated the blog post details.");
 					if (err == null) {
 						callback(true)
@@ -58,7 +57,7 @@ module.exports = {
 				_id: new mongodb.ObjectID(id)
 			},
 				function (err, result) {
-					assert.equal(err, null);
+					// assert.equal(err, null);
 					console.log("Deleted the post.");
 					if (err == null) {
 						callback(true)
@@ -75,7 +74,6 @@ module.exports = {
 				_id: new mongodb.ObjectID(id)
 			},
 				function (err, result) {
-					assert.equal(err, null);
 					console.log("Retrived the entry.");
 					if (err == null) {
 						callback(result)
