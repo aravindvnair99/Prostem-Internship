@@ -84,6 +84,9 @@ class ShowProfile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+		this.handleLastNameChange = this.handleLastNameChange.bind(this);
+		this.handleEmailChange = this.handleEmailChange.bind(this);
+		this.handleMobileChange = this.handleMobileChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.updateProfile = this.updateProfile.bind(this);
 		this.getProfile = this.getProfile.bind(this);
@@ -91,6 +94,7 @@ class ShowProfile extends React.Component {
 			firstname: '',
 			lastname: '',
 			email: '',
+			mobile: '',
 			password: ''
 		};
 	}
@@ -105,7 +109,10 @@ class ShowProfile extends React.Component {
 		var self = this;
 		axios.post('/updateProfile', {
 			firstname: this.state.firstname,
-			password: this.state.password
+			lastname: this.state.lastname,
+			email: this.state.email,
+			mobile: this.state.mobile,
+			password: this.state.password,
 		})
 			.then(function (response) {
 				if (response) {
@@ -119,6 +126,15 @@ class ShowProfile extends React.Component {
 	handleFirstNameChange(e) {
 		this.setState({ firstname: e.target.value })
 	}
+	handleLastNameChange(e) {
+		this.setState({ lastname: e.target.value })
+	}
+	handleEmailChange(e) {
+		this.setState({ email: e.target.value })
+	}
+	handleMobileChange(e) {
+		this.setState({ mobile: e.target.value })
+	}
 	handlePasswordChange(e) {
 		this.setState({ password: e.target.value })
 	}
@@ -130,7 +146,9 @@ class ShowProfile extends React.Component {
 				console.log(response)
 				if (response) {
 					self.setState({ firstname: response.data.firstname });
+					self.setState({ lastname: response.data.lastname });
 					self.setState({ email: response.data.email });
+					self.setState({ mobile: response.data.mobile });
 					self.setState({ password: response.data.password });
 				}
 			})
@@ -146,6 +164,15 @@ class ShowProfile extends React.Component {
 						<br styles="clear:both" />
 						<div className="form-group">
 							<input value={this.state.firstname} type="text" onChange={this.handleFirstNameChange} className="form-control" placeholder="First Name" required />
+						</div>
+						<div className="form-group">
+							<input value={this.state.lastname} type="text" onChange={this.handleLastNameChange} className="form-control" placeholder="Last Name" required />
+						</div>
+						<div className="form-group">
+							<input value={this.state.email} type="text" onChange={this.handleEmailChange} className="form-control" placeholder="Email" required />
+						</div>
+						<div className="form-group">
+							<input value={this.state.mobile} type="text" onChange={this.handleMobileChange} className="form-control" placeholder="Mobile" required />
 						</div>
 						<div className="form-group">
 							<input value={this.state.password} type="password" onChange={this.handlePasswordChange} className="form-control" placeholder="Password" required />

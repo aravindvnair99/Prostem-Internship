@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	signup: function (firstname, lastname, gender, email, mobile, password, password2, callback) {
+	signup: function (firstname, lastname, gender, email, mobile, password, callback) {
 		MongoClient.connect(url, function (err, db) {
 			db.collection('user').insertOne({
 				"firstname": firstname,
@@ -10,8 +10,7 @@ module.exports = {
 				"gender": gender,
 				"email": email,
 				"mobile": mobile,
-				"password": password,
-				"password2": password2
+				"password": password
 			}, function (err, result) {
 				if (result == null) {
 					console.log('Error saving user details on signup.')
@@ -20,7 +19,6 @@ module.exports = {
 					console.log("Saved user sign up details.");
 					callback(true)
 				}
-
 			});
 		});
 	},
