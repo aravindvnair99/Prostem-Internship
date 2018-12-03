@@ -230,7 +230,7 @@ class ShowPost extends React.Component {
 		return (
 			<div className="tableSize">
 			<style>
-				{'table {border-collapse:collapse; table-layout:fixed; width:310px;}; table td {border:solid 1px #fab; width:100px; word-wrap:break-word;} }'}
+				{'table {border-collapse:collapse; table-layout:relative; width:200px;}; table td {border:solid 1px #fab; width:50px; word-wrap:normal;} }'}
 			</style>
 				<table className="table table-striped">
 					<thead>
