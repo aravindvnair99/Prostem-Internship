@@ -18,14 +18,13 @@ class Signin extends React.Component {
 		axios.post('/signin', {
 			email: this.state.email,
 			password: this.state.password,
-
 		})
 			.then(function (response) {
 				if (response.data == 'success') {
 					alert('Correct credentials.')
 					window.location.assign('http://localhost:5000/home')
 				}
-				else if (response.data == '') {
+				else if (response.data == null) {
 					console.log(response)
 					alert('Wrong credentials.')
 				}
