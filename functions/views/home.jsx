@@ -228,34 +228,36 @@ class ShowPost extends React.Component {
 	}
 	render() {
 		return (
-			<table className="table table-striped">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Title</th>
-						<th>Subject</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					{
-						this.state.posts.map(function (post, index) {
-							return <tr key={index} >
-								<td>{index + 1}</td>
-								<td>{post.title}</td>
-								<td>{post.subject}</td>
-								<td>
-									<span onClick={this.updatePost.bind(this, post._id)} className="glyphicon glyphicon-pencil"></span>
-								</td>
-								<td>
-									<span onClick={this.deletePost.bind(this, post._id)} className="glyphicon glyphicon-remove"></span>
-								</td>
-							</tr>
-						}.bind(this))
-					}
-				</tbody>
-			</table>
+			<div className="tableSize">
+				<table className="table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Title</th>
+							<th>Subject</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							this.state.posts.map(function (post, index) {
+								return <tr key={index} >
+									<td>{index + 1}</td>
+									<td>{post.title}</td>
+									<td>{post.subject}</td>
+									<td>
+										<span onClick={this.updatePost.bind(this, post._id)} className="glyphicon glyphicon-pencil"></span>
+									</td>
+									<td>
+										<span onClick={this.deletePost.bind(this, post._id)} className="glyphicon glyphicon-remove"></span>
+									</td>
+								</tr>
+							}.bind(this))
+						}
+					</tbody>
+				</table>
+			</div>
 		)
 	}
 }
