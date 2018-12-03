@@ -37,8 +37,8 @@
 	},
 	"main": "app.js",
 	"scripts": {
-		"start": "nodemon app.js",
-		"test": "git status && git add . && git status && git commit && git status && git push && git status && npm start"
+		"start": "firebase serve",
+		"test": "git status && git add . && git status && git commit && git status && git push && git status && firebase serve"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.3",

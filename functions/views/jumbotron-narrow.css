@@ -8,13 +8,13 @@ table{
   table-layout: fixed;
   width: 100%;
 }
-/* .tableSize{
+.tableSize{
   display : table;
-} */
-/* tr th td {
+}
+td {
   width: 10vw;
-  height: 1s0vw;
-} */
+  height: 1vw;
+}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
