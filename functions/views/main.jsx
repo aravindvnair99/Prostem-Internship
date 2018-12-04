@@ -47,9 +47,9 @@ class Signin extends React.Component {
 	render() {
 		return (
 			<div>
-				<style>
+				{/* <style>
 				{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
-				</style>
+				</style> */}
 				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign in</h2>
 					<label for="inputEmail" className="sr-only">Email address</label>
@@ -182,9 +182,9 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div>
-				<style>
+				{/* <style>
 					{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
-				</style>
+				</style> */}
 				<form className="form-signin">
 					<h2 className="form-signin-heading">Please sign up</h2>
 					<label for="inputFirstName" className="sr-only">First Name</label>
