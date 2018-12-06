@@ -1,53 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="React Blog" />
+		<meta
+			name="author"
+			content="Aravind V. Nair, Abhishek Sai, Aditya Deepak Udapudi"
+		/>
+		<title>React Blog App</title>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			crossorigin="anonymous"
+		/>
+		<link href="jumbotron-narrow.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
+		<script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+	</head>
+	<style>
+		body {
+			background: linear-gradient(
+				to right,
+				rgb(224, 156, 197),
+				rgb(68, 166, 187)
+			);
+		}
+		h3 {
+			color: black;
+		}
+	</style>
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="React Blog">
-	<meta name="author" content="Aravind V. Nair, Abhishek Sai, Aditya Deepak Udapudi">
-	<title>React Blog App</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-	<link href="jumbotron-narrow.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
-	<script src="https://npmcdn.com/react-router@3.0.2/umd/ReactRouter.min.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-</head>
-<style>
-	body{
-	background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187));
-}
-h3{
-	color: black;
-}
-
-</style>
-
-<body>
-	<div class="container">
-		<div class="header clearfix">
-			<nav>
-				<ul class="nav nav-pills pull-right">
-					<li role="presentation" id="homeHyperlink" class="active"><a href="#">Home</a></li>
-					<li role="presentation" id="addHyperLink"><a href="/home#/addPost">Add</a></li>
-					<li role="presentation" id="profileHyperlink"><a href="/home#/showProfile">Profile</a></li>
-					<li role="presentation" id="logoutHyperlink"><a href="/home#/logout">Logout</a></li>
-				</ul>
-			</nav>
-			<h3><strong>React Blog App</strong></h3>
-			<div id="app">
+	<body>
+		<div class="container">
+			<div class="header clearfix">
+				<nav>
+					<ul class="nav nav-pills pull-right">
+						<li
+							role="presentation"
+							id="homeHyperlink"
+							class="active"
+						>
+							<a href="#">Home</a>
+						</li>
+						<li role="presentation" id="addHyperLink">
+							<a href="/home#/addPost">Add</a>
+						</li>
+						<li role="presentation" id="profileHyperlink">
+							<a href="/home#/showProfile">Profile</a>
+						</li>
+						<li role="presentation" id="logoutHyperlink">
+							<a href="/home#/logout">Logout</a>
+						</li>
+					</ul>
+				</nav>
+				<h3><strong>React Blog App</strong></h3>
+				<div id="app"></div>
 			</div>
+			<footer class="footer">
+				<p>&copy; 2018 Company Name, Inc.</p>
+			</footer>
 		</div>
-		<footer class="footer">
-			<p>&copy; 2018 Company Name, Inc.</p>
-		</footer>
-	</div>
-	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-	<script type="text/babel" src="home.jsx"></script>
-</body>
-
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<script type="text/babel" src="home.jsx"></script>
+	</body>
 </html>
