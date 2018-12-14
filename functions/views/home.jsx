@@ -25,10 +25,23 @@ class AddPost extends React.Component {
 		this.getPostWithId();
 	}
 	addPost() {
+		var self = this;
+		axios
+			.post('/getProfile', {})
+			.then(function (response) {
+				console.log(response);
+				if (response) {
+					self.setState({ email: response.data.email });
+				}
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
 		axios
 			.post('/addPost', {
 				title: this.state.title,
 				subject: this.state.subject,
+				email: this.state.email,
 				id: this.props.params.id
 			})
 			.then(function(response) {

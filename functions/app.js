@@ -92,16 +92,17 @@ app.post('/signup', function(req, res) {
 app.post('/addpost', function(req, res) {
 	var title = req.body.title;
 	var subject = req.body.subject;
+	var email = req.body.email;
 	var id = req.body.id;
 	console.log('id is ', id);
 	if (id == '' || id == undefined) {
 		console.log('add');
-		post.addPost(title, subject, function(result) {
+		post.addPost(title, subject, email, function(result) {
 			res.send(result);
 		});
 	} else {
-		console.log('update', title, subject);
-		post.updatePost(id, title, subject, function(result) {
+		console.log('update', title, subject, email);
+		post.updatePost(id, title, subject, email, function(result) {
 			res.send(result);
 		});
 	}

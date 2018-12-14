@@ -3,20 +3,21 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	addPost: function(title, subject, callback) {
+	addPost: function(title, subject, email, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
 				db.collection('post').insertOne(
 					{
 						title: title,
-						subject: subject
+						subject: subject,
+						email: email
 					},
 					function(err, result) {
 						// assert.equal(err, null);
 						console.log('Saved the blog post details.');
 						if (err == null) {
-							callback(true);
+							callback(result);
 						} else {
 							callback(false);
 						}
