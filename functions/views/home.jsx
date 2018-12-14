@@ -14,6 +14,7 @@ class AddPost extends React.Component {
 		this.state = {
 			title: '',
 			subject: '',
+			email: '',
 			id: ''
 		};
 	}
@@ -28,15 +29,16 @@ class AddPost extends React.Component {
 		var self = this;
 		axios
 			.post('/getProfile', {})
-			.then(function (response) {
+			.then(function(response) {
 				console.log(response);
 				if (response) {
 					self.setState({ email: response.data.email });
 				}
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log('error is ', error);
 			});
+		console.log('Email is ::::::::::::::: ' + this.props.params.email);
 		axios
 			.post('/addPost', {
 				title: this.state.title,
