@@ -37,7 +37,7 @@
 	},
 	"main": "app.js",
 	"scripts": {
-		"start": "nodemon app.js",
+		"start": "node app.js",
 		"test": "git status && git add . && git status && git commit && git status && git push && git status"
 	},
 	"dependencies": {
