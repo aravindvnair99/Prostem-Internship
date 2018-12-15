@@ -1,6 +1,6 @@
 {
 	"name": "prostemintern",
-	"version": "4.3.0",
+	"version": "5.0.0",
 	"private": true,
 	"description": "Prostem Internship",
 	"keywords": [
@@ -13,7 +13,7 @@
 		"aditya deepak udapudi"
 	],
 	"license": "MIT",
-	"homepage": "https://prostemintern.firebaseapp.com/",
+	"homepage": "https://prostemintern.herokuapp.com/",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/aravindvnair99/Prostem-Internship"
@@ -37,15 +37,13 @@
 	},
 	"main": "app.js",
 	"scripts": {
-		"start": "firebase serve",
-		"test": "git status && git add . && git status && git commit && git status && git push && git status && firebase serve"
+		"start": "nodemon app.js",
+		"test": "git status && git add . && git status && git commit && git status && git push && git status"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.3",
 		"express": "^4.16.4",
 		"express-session": "^1.15.6",
-		"firebase-admin": "~6.0.0",
-		"firebase-functions": "^2.1.0",
 		"mongodb": "^2.2.30"
 	}
 }

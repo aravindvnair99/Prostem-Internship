@@ -1,10 +1,10 @@
-const functions = require('firebase-functions');
-var express = require('express');
-var session = require('express-session');
-var path = require('path');
-var bodyParser = require('body-parser');
-var user = require('./user');
-var post = require('./post');
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const bodyParser = require('body-parser');
+const user = require('./user');
+const post = require('./post');
+const PORT = process.env.PORT || 5000;
 
 var app = express();
 app.use(
@@ -13,6 +13,7 @@ app.use(
 var sessions;
 app.use(express.static(path.join(__dirname, '/views')));
 app.use(bodyParser.json());
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/views/index.html');
@@ -149,5 +150,3 @@ app.post('/getPostWithId', function(req, res) {
 		res.send(result);
 	});
 });
-
-exports.app = functions.https.onRequest(app);
