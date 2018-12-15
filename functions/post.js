@@ -56,19 +56,21 @@ module.exports = {
 			url,
 			function(err, db) {
 				db.collection('post', function(err, collection) {
-					collection.find({"email": username}).toArray(function(err, list) {
-						callback(list);
-					});
+					collection
+						.find({ email: username })
+						.toArray(function(err, list) {
+							callback(list);
+						});
 				});
 			}
 		);
 	},
-	getPostAll: function (callback) {
+	getPostAll: function(callback) {
 		MongoClient.connect(
 			url,
-			function (err, db) {
-				db.collection('post', function (err, collection) {
-					collection.find().toArray(function (err, list) {
+			function(err, db) {
+				db.collection('post', function(err, collection) {
+					collection.find().toArray(function(err, list) {
 						callback(list);
 					});
 				});

@@ -384,11 +384,11 @@ class ShowPostAll extends React.Component {
 		var self = this;
 		axios
 			.post('/getPostAll', {})
-			.then(function (response) {
+			.then(function(response) {
 				console.log('res is ', response);
 				self.setState({ postsAll: response.data });
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log('error is ', error);
 			});
 	}
@@ -418,7 +418,7 @@ class ShowPostAll extends React.Component {
 					</thead>
 					<tbody>
 						{this.state.postsAll.map(
-							function (post, index) {
+							function(post, index) {
 								return (
 									<tr key={index}>
 										<td>{index + 1}</td>
