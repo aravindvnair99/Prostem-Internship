@@ -22,6 +22,7 @@ class AddPost extends React.Component {
 	componentDidMount() {
 		document.getElementById('addHyperLink').className = 'active';
 		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('myPostsHyperLink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
 		this.getProfile();
@@ -144,6 +145,7 @@ class ShowProfile extends React.Component {
 	}
 	componentDidMount() {
 		document.getElementById('addHyperLink').className = '';
+		document.getElementById('myPostsHyperLink').className = '';
 		document.getElementById('homeHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = 'active';
 		document.getElementById('logoutHyperlink').className = '';
@@ -309,7 +311,8 @@ class ShowPost extends React.Component {
 	}
 	componentDidMount() {
 		this.getPost();
-		document.getElementById('homeHyperlink').className = 'active';
+		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('myPostsHyperLink').className = 'active';
 		document.getElementById('addHyperLink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
@@ -369,6 +372,69 @@ class ShowPost extends React.Component {
 	}
 }
 
+class ShowPostAll extends React.Component {
+	constructor(props) {
+		super(props);
+		this.getPostAll = this.getPostAll.bind(this);
+		this.state = {
+			postsAll: []
+		};
+	}
+	getPostAll() {
+		var self = this;
+		axios
+			.post('/getPostAll', {})
+			.then(function (response) {
+				console.log('res is ', response);
+				self.setState({ postsAll: response.data });
+			})
+			.catch(function (error) {
+				console.log('error is ', error);
+			});
+	}
+	componentDidMount() {
+		this.getPostAll();
+		document.getElementById('homeHyperlink').className = 'active';
+		document.getElementById('myPostsHyperLink').className = '';
+		document.getElementById('addHyperLink').className = '';
+		document.getElementById('profileHyperlink').className = '';
+		document.getElementById('logoutHyperlink').className = '';
+	}
+	render() {
+		return (
+			<div className='tableSize'>
+				<style>
+					{
+						'table {border-collapse:collapse; table-layout:fixed;}; table td {border:solid 1px #fab; max-width:5px; word-wrap:normal;} }'
+					}
+				</style>
+				<table className='table table-striped'>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Title</th>
+							<th>Subject</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.postsAll.map(
+							function (post, index) {
+								return (
+									<tr key={index}>
+										<td>{index + 1}</td>
+										<td>{post.title}</td>
+										<td>{post.subject}</td>
+									</tr>
+								);
+							}.bind(this)
+						)}
+					</tbody>
+				</table>
+			</div>
+		);
+	}
+}
+
 class Logout extends React.Component {
 	constructor(props) {
 		super(props);
@@ -395,7 +461,8 @@ class Logout extends React.Component {
 
 ReactDOM.render(
 	<Router history={hashHistory}>
-		<Route component={ShowPost} path='/' />
+		<Route component={ShowPostAll} path='/' />
+		<Route component={ShowPost} path='/myPosts' />
 		<Route component={AddPost} path='/addPost(/:id)' />
 		<Route component={ShowProfile} path='/showProfile' />
 		<Route component={Logout} path='/logout' />
