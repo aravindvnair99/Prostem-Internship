@@ -1,6 +1,6 @@
 # :office: Prostem Internship
 
-An blog portal dashboard made originally for Prostem Internship based on HTML5, CSS3, Materialize, JS, Node.js, Express.js Firebase Hosting, Firebase Cloud Functions, Firebase Authentication, MongoDB.
+An blog portal dashboard made originally for Prostem Internship based on HTML5, CSS3, Materialize, JS, Node.js, Express.js, Heroku and MongoDB.
 
 # :computer: How to contribute?
 
