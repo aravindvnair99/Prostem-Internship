@@ -127,7 +127,13 @@ app.post('/updateProfile', function(req, res) {
 });
 
 app.post('/getpost', function(req, res) {
-	post.getPost(function(result) {
+	post.getPost(sessions.username, function(result) {
+		res.send(result);
+	});
+});
+
+app.post('/getPostAll', function (req, res) {
+	post.getPostAll(function (result) {
 		res.send(result);
 	});
 });

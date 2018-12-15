@@ -17,7 +17,7 @@ module.exports = {
 						// assert.equal(err, null);
 						console.log('Saved the blog post details.');
 						if (err == null) {
-							callback(result);
+							callback(true);
 						} else {
 							callback(false);
 						}
@@ -51,12 +51,24 @@ module.exports = {
 			}
 		);
 	},
-	getPost: function(callback) {
+	getPost: function(username, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
 				db.collection('post', function(err, collection) {
-					collection.find().toArray(function(err, list) {
+					collection.find({"email": username}).toArray(function(err, list) {
+						callback(list);
+					});
+				});
+			}
+		);
+	},
+	getPostAll: function (callback) {
+		MongoClient.connect(
+			url,
+			function (err, db) {
+				db.collection('post', function (err, collection) {
+					collection.find().toArray(function (err, list) {
 						callback(list);
 					});
 				});

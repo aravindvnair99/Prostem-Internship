@@ -9,6 +9,7 @@ class AddPost extends React.Component {
 		super(props);
 		this.addPost = this.addPost.bind(this);
 		this.getPostWithId = this.getPostWithId.bind(this);
+		this.getProfile = this.getProfile.bind(this);
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handleSubjectChange = this.handleSubjectChange.bind(this);
 		this.state = {
@@ -23,9 +24,10 @@ class AddPost extends React.Component {
 		document.getElementById('homeHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
+		this.getProfile();
 		this.getPostWithId();
 	}
-	addPost() {
+	getProfile() {
 		var self = this;
 		axios
 			.post('/getProfile', {})
@@ -38,7 +40,8 @@ class AddPost extends React.Component {
 			.catch(function(error) {
 				console.log('error is ', error);
 			});
-		console.log('Email is ::::::::::::::: ' + this.props.params.email);
+	}
+	addPost() {
 		axios
 			.post('/addPost', {
 				title: this.state.title,
