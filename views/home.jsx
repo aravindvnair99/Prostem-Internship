@@ -8,15 +8,17 @@ class AddPost extends React.Component {
 	constructor(props) {
 		super(props);
 		this.addPost = this.addPost.bind(this);
+		this.getCategories = this.getCategories.bind(this);
 		this.getPostWithId = this.getPostWithId.bind(this);
 		this.getProfile = this.getProfile.bind(this);
 		this.handleTitleChange = this.handleTitleChange.bind(this);
 		this.handleContentChange = this.handleContentChange.bind(this);
+		this.handleCategoryChange = this.handleCategoryChange.bind(this);
 		this.state = {
 			title: '',
 			content: '',
-			categories: '',
 			email: '',
+			categories: '',
 			id: ''
 		};
 	}
@@ -138,7 +140,6 @@ class AddPost extends React.Component {
 						</div>
 						<div className='form-group'>
 							<label for='sel1'>Select Category:</label>
-
 							<select
 								className='form-control'
 								value={this.state.category}
