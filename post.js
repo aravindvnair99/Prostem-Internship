@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	addPost: function (title, subject, category, email, callback) {
+	addPost: function(title, subject, category, email, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
