@@ -14,6 +14,11 @@ class Signin extends React.Component {
 			password: ''
 		};
 	}
+	componentDidMount() {
+		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('signupHyperLink').className = '';
+		document.getElementById('signinHyperlink').className = 'active';
+	}
 	signIn() {
 		axios
 			.post('/signin', {
@@ -45,9 +50,6 @@ class Signin extends React.Component {
 	render() {
 		return (
 			<div>
-				{/* <style>
-				{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
-				</style> */}
 				<form className='form-signin'>
 					<h2 className='form-signin-heading'>Please sign in</h2>
 					<label for='inputEmail' className='sr-only'>
@@ -84,9 +86,6 @@ class Signin extends React.Component {
 						Sign in
 					</button>
 				</form>
-				<div>
-					<Link to='/signup'>{'Signup'}</Link>
-				</div>
 			</div>
 		);
 	}
@@ -113,6 +112,11 @@ class Signup extends React.Component {
 			password: '',
 			password2: ''
 		};
+	}
+	componentDidMount() {
+		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('signupHyperLink').className = 'active';
+		document.getElementById('signinHyperlink').className = '';
 	}
 	handleFirstNameChange(e) {
 		this.setState({ firstname: e.target.value });
@@ -209,9 +213,6 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div>
-				{/* <style>
-					{'body { background:linear-gradient(to right,rgb(224,156,197),rgb(68,166,187)); }'}
-				</style> */}
 				<form className='form-signin'>
 					<h2 className='form-signin-heading'>Please sign up</h2>
 					<label for='inputFirstName' className='sr-only'>
@@ -321,9 +322,6 @@ class Signup extends React.Component {
 						Sign up
 					</button>
 				</form>
-				<div>
-					<Link to='/'>{'Signin'}</Link>
-				</div>
 			</div>
 		);
 	}
@@ -352,10 +350,8 @@ class ShowPostAll extends React.Component {
 	componentDidMount() {
 		this.getPostAll();
 		document.getElementById('homeHyperlink').className = 'active';
-		document.getElementById('myPostsHyperLink').className = '';
-		document.getElementById('addHyperLink').className = '';
-		document.getElementById('profileHyperlink').className = '';
-		document.getElementById('logoutHyperlink').className = '';
+		document.getElementById('signupHyperLink').className = '';
+		document.getElementById('signinHyperlink').className = '';
 	}
 	render() {
 		return (
@@ -370,7 +366,7 @@ class ShowPostAll extends React.Component {
 						<tr>
 							<th>#</th>
 							<th>Title</th>
-							<th>Subject</th>
+							<th>Content</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -380,7 +376,7 @@ class ShowPostAll extends React.Component {
 									<tr key={index}>
 										<td>{index + 1}</td>
 										<td>{post.title}</td>
-										<td>{post.subject}</td>
+										<td>{post.content}</td>
 									</tr>
 								);
 							}.bind(this)

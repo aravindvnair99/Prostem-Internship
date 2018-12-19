@@ -11,10 +11,10 @@ class AddPost extends React.Component {
 		this.getPostWithId = this.getPostWithId.bind(this);
 		this.getProfile = this.getProfile.bind(this);
 		this.handleTitleChange = this.handleTitleChange.bind(this);
-		this.handleSubjectChange = this.handleSubjectChange.bind(this);
+		this.handleContentChange = this.handleContentChange.bind(this);
 		this.state = {
 			title: '',
-			subject: '',
+			content: '',
 			email: '',
 			id: ''
 		};
@@ -61,7 +61,7 @@ class AddPost extends React.Component {
 		axios
 			.post('/addPost', {
 				title: this.state.title,
-				subject: this.state.subject,
+				content: this.state.content,
 				email: this.state.email,
 				category: this.state.category,
 				id: this.props.params.id
@@ -85,7 +85,7 @@ class AddPost extends React.Component {
 				if (response) {
 					self.setState({ title: response.data.title });
 					self.setState({
-						subject: response.data.subject
+						content: response.data.content
 					});
 					self.setState({
 						category: response.data.category
@@ -99,8 +99,8 @@ class AddPost extends React.Component {
 	handleTitleChange(e) {
 		this.setState({ title: e.target.value });
 	}
-	handleSubjectChange(e) {
-		this.setState({ subject: e.target.value });
+	handleContentChange(e) {
+		this.setState({ content: e.target.value });
 	}
 	handleCategoryChange(e) {
 		this.setState({ category: e.target.value });
@@ -125,12 +125,12 @@ class AddPost extends React.Component {
 						</div>
 						<div className='form-group'>
 							<textarea
-								value={this.state.subject}
+								value={this.state.content}
 								className='form-control'
-								onChange={this.handleSubjectChange}
+								onChange={this.handleContentChange}
 								type='textarea'
-								id='subject'
-								placeholder='Subject'
+								id='content'
+								placeholder='Content'
 								maxlength='140'
 								rows='7'
 							/>
@@ -444,7 +444,7 @@ class ShowPost extends React.Component {
 						<tr>
 							<th>#</th>
 							<th>Title</th>
-							<th>Subject</th>
+							<th>Content</th>
 							<th />
 							<th />
 						</tr>
@@ -456,7 +456,7 @@ class ShowPost extends React.Component {
 									<tr key={index}>
 										<td>{index + 1}</td>
 										<td>{post.title}</td>
-										<td>{post.subject}</td>
+										<td>{post.content}</td>
 										<td>
 											<span
 												onClick={this.updatePost.bind(
@@ -528,7 +528,7 @@ class ShowPostAll extends React.Component {
 						<tr>
 							<th>#</th>
 							<th>Title</th>
-							<th>Subject</th>
+							<th>Content</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -538,7 +538,7 @@ class ShowPostAll extends React.Component {
 									<tr key={index}>
 										<td>{index + 1}</td>
 										<td>{post.title}</td>
-										<td>{post.subject}</td>
+										<td>{post.content}</td>
 									</tr>
 								);
 							}.bind(this)

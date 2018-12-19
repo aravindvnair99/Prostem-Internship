@@ -3,14 +3,14 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	addPost: function(title, subject, category, email, callback) {
+	addPost: function(title, content, category, email, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
 				db.collection('post').insertOne(
 					{
 						title: title,
-						subject: subject,
+						content: content,
 						category: category,
 						email: email
 					},
@@ -58,7 +58,7 @@ module.exports = {
 			}
 		);
 	},
-	updatePost: function(id, title, subject, callback) {
+	updatePost: function(id, title, content, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
@@ -67,7 +67,7 @@ module.exports = {
 					{
 						$set: {
 							title: title,
-							subject: subject
+							content: content
 						}
 					},
 					function(err, result) {

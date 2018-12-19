@@ -83,19 +83,19 @@ app.post('/signup', function(req, res) {
 
 app.post('/addpost', function(req, res) {
 	var title = req.body.title;
-	var subject = req.body.subject;
+	var content = req.body.content;
 	var email = req.body.email;
 	var category = req.body.category;
 	var id = req.body.id;
 	console.log('id is ', id);
 	if (id == '' || id == undefined) {
 		console.log('add');
-		post.addPost(title, subject, category, email, function(result) {
+		post.addPost(title, content, category, email, function(result) {
 			res.send(result);
 		});
 	} else {
-		console.log('update', title, subject, email);
-		post.updatePost(id, title, subject, category, email, function(result) {
+		console.log('update', title, content, email);
+		post.updatePost(id, title, content, category, email, function(result) {
 			res.send(result);
 		});
 	}
