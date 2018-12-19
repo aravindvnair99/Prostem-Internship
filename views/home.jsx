@@ -15,6 +15,7 @@ class AddPost extends React.Component {
 		this.state = {
 			title: '',
 			content: '',
+			categories: '',
 			email: '',
 			id: ''
 		};
