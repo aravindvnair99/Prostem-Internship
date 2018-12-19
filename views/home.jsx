@@ -28,6 +28,7 @@ class AddPost extends React.Component {
 		document.getElementById('logoutHyperlink').className = '';
 		this.getProfile();
 		this.getPostWithId();
+		this.getCategories();
 	}
 	getProfile() {
 		var self = this;
@@ -43,16 +44,30 @@ class AddPost extends React.Component {
 				console.log('error is ', error);
 			});
 	}
+	getCategories() {
+		var self = this;
+		axios
+			.post('/getCategory', {})
+			.then(function(response) {
+				if (response) {
+					self.setState({ categories: response.data });
+				}
+			})
+			.catch(function(error) {
+				console.log('Error is ', error);
+			});
+	}
 	addPost() {
 		axios
 			.post('/addPost', {
 				title: this.state.title,
 				subject: this.state.subject,
 				email: this.state.email,
+				category: this.state.category,
 				id: this.props.params.id
 			})
 			.then(function(response) {
-				console.log('reponse from add post is ', response);
+				console.log('Response from add post is ', response);
 				hashHistory.push('/');
 			})
 			.catch(function(error) {
@@ -69,7 +84,12 @@ class AddPost extends React.Component {
 			.then(function(response) {
 				if (response) {
 					self.setState({ title: response.data.title });
-					self.setState({ subject: response.data.subject });
+					self.setState({
+						subject: response.data.subject
+					});
+					self.setState({
+						category: response.data.category
+					});
 				}
 			})
 			.catch(function(error) {
@@ -81,6 +101,9 @@ class AddPost extends React.Component {
 	}
 	handleSubjectChange(e) {
 		this.setState({ subject: e.target.value });
+	}
+	handleCategoryChange(e) {
+		this.setState({ category: e.target.value });
 	}
 	render() {
 		return (
@@ -112,6 +135,27 @@ class AddPost extends React.Component {
 								rows='7'
 							/>
 						</div>
+						<div className='form-group'>
+							<label for='sel1'>Select Category:</label>
+
+							<select
+								className='form-control'
+								value={this.state.category}
+								onChange={this.handleCategoryChange}>
+								<option value='0'>Select Tag</option>
+								{this.state.categories.map(
+									function(category, i) {
+										return (
+											<option
+												key={i}
+												value={category._id}>
+												{category.name}
+											</option>
+										);
+									}.bind(this)
+								)}
+							</select>
+						</div>
 						<button
 							type='button'
 							onClick={this.addPost}
@@ -130,6 +174,11 @@ class AddPost extends React.Component {
 class AddCategory extends React.Component {
 	constructor(props) {
 		super(props);
+		this.addCategory = this.addCategory.bind(this);
+		this.handleCategoryChange = this.handleCategoryChange.bind(this);
+		this.state = {
+			category: ''
+		};
 	}
 	componentDidMount() {
 		document.getElementById('homeHyperlink').className = '';
@@ -139,6 +188,21 @@ class AddCategory extends React.Component {
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
 	}
+	handleCategoryChange(e) {
+		this.setState({ tag: e.target.value });
+	}
+	addCategory() {
+		axios
+			.post('/addCategory', {
+				category: this.state.category
+			})
+			.then(function(response) {
+				console.log('reponse from add tag is ', response);
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+	}
 	render() {
 		return (
 			<div className='col-md-5'>
@@ -147,7 +211,9 @@ class AddCategory extends React.Component {
 						<br styles='clear:both' />
 						<div className='form-group'>
 							<input
+								value={this.state.category}
 								type='text'
+								onChange={this.handleCategoryChange}
 								className='form-control'
 								id='category'
 								name='category'
@@ -158,6 +224,7 @@ class AddCategory extends React.Component {
 						<div className='form-group'>
 							<button
 								type='button'
+								onClick={this.addCategory}
 								id='submit'
 								name='submit'
 								className='btn btn-primary pull-right'>

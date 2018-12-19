@@ -85,19 +85,33 @@ app.post('/addpost', function(req, res) {
 	var title = req.body.title;
 	var subject = req.body.subject;
 	var email = req.body.email;
+	var category = req.body.category;
 	var id = req.body.id;
 	console.log('id is ', id);
 	if (id == '' || id == undefined) {
 		console.log('add');
-		post.addPost(title, subject, email, function(result) {
+		post.addPost(title, subject, category, email, function(result) {
 			res.send(result);
 		});
 	} else {
 		console.log('update', title, subject, email);
-		post.updatePost(id, title, subject, email, function(result) {
+		post.updatePost(id, title, subject, category, email, function(result) {
 			res.send(result);
 		});
 	}
+});
+
+app.post('/addcategory', function(req, res) {
+	var category = req.body.category;
+	post.addCategory(category, function(result) {
+		res.send(result);
+	});
+});
+
+app.post('/getcategory', function(req, res) {
+	post.getCategory(function(result) {
+		res.send(result);
+	});
 });
 
 app.post('/updateProfile', function(req, res) {

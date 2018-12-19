@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://team:team123@ds247407.mlab.com:47407/prostemintern';
 
 module.exports = {
-	addPost: function(title, subject, email, callback) {
+	addPost: function (title, subject, category, email, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
@@ -11,10 +11,10 @@ module.exports = {
 					{
 						title: title,
 						subject: subject,
+						category: category,
 						email: email
 					},
 					function(err, result) {
-						// assert.equal(err, null);
 						console.log('Saved the blog post details.');
 						if (err == null) {
 							callback(true);
@@ -23,6 +23,38 @@ module.exports = {
 						}
 					}
 				);
+			}
+		);
+	},
+	addCategory: function(categoryName, callback) {
+		MongoClient.connect(
+			url,
+			function(err, db) {
+				db.collection('category').insertOne(
+					{
+						name: categoryName
+					},
+					function(err, result) {
+						console.log('Saved the tag details.');
+						if (err == null) {
+							callback(true);
+						} else {
+							callback(false);
+						}
+					}
+				);
+			}
+		);
+	},
+	getCategory: function(callback) {
+		MongoClient.connect(
+			url,
+			function(err, db) {
+				db.collection('category', function(err, collection) {
+					collection.find().toArray(function(err, list) {
+						callback(list);
+					});
+				});
 			}
 		);
 	},
@@ -39,7 +71,6 @@ module.exports = {
 						}
 					},
 					function(err, result) {
-						// assert.equal(err, null);
 						console.log('Updated the blog post details.');
 						if (err == null) {
 							callback(true);
@@ -86,7 +117,6 @@ module.exports = {
 						_id: new mongodb.ObjectID(id)
 					},
 					function(err, result) {
-						// assert.equal(err, null);
 						console.log('Deleted the post.');
 						if (err == null) {
 							callback(true);
