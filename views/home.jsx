@@ -20,9 +20,10 @@ class AddPost extends React.Component {
 		};
 	}
 	componentDidMount() {
-		document.getElementById('addHyperLink').className = 'active';
 		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('addHyperLink').className = 'active';
 		document.getElementById('myPostsHyperLink').className = '';
+		document.getElementById('categoryHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
 		this.getProfile();
@@ -126,6 +127,50 @@ class AddPost extends React.Component {
 	}
 }
 
+class AddCategory extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	componentDidMount() {
+		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('addHyperLink').className = '';
+		document.getElementById('myPostsHyperLink').className = '';
+		document.getElementById('categoryHyperlink').className = 'active';
+		document.getElementById('profileHyperlink').className = '';
+		document.getElementById('logoutHyperlink').className = '';
+	}
+	render() {
+		return (
+			<div className='col-md-5'>
+				<div className='form-area'>
+					<form role='form'>
+						<br styles='clear:both' />
+						<div className='form-group'>
+							<input
+								type='text'
+								className='form-control'
+								id='category'
+								name='category'
+								placeholder='Category'
+								required
+							/>
+						</div>
+						<div className='form-group'>
+							<button
+								type='button'
+								id='submit'
+								name='submit'
+								className='btn btn-primary pull-right'>
+								Add Category
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		);
+	}
+}
+
 class ShowProfile extends React.Component {
 	constructor(props) {
 		super(props);
@@ -144,9 +189,10 @@ class ShowProfile extends React.Component {
 		};
 	}
 	componentDidMount() {
+		document.getElementById('homeHyperlink').className = '';
 		document.getElementById('addHyperLink').className = '';
 		document.getElementById('myPostsHyperLink').className = '';
-		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('categoryHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = 'active';
 		document.getElementById('logoutHyperlink').className = '';
 		this.getProfile();
@@ -312,8 +358,9 @@ class ShowPost extends React.Component {
 	componentDidMount() {
 		this.getPost();
 		document.getElementById('homeHyperlink').className = '';
-		document.getElementById('myPostsHyperLink').className = 'active';
 		document.getElementById('addHyperLink').className = '';
+		document.getElementById('myPostsHyperLink').className = 'active';
+		document.getElementById('categoryHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
 	}
@@ -395,8 +442,9 @@ class ShowPostAll extends React.Component {
 	componentDidMount() {
 		this.getPostAll();
 		document.getElementById('homeHyperlink').className = 'active';
-		document.getElementById('myPostsHyperLink').className = '';
 		document.getElementById('addHyperLink').className = '';
+		document.getElementById('myPostsHyperLink').className = '';
+		document.getElementById('categoryHyperlink').className = '';
 		document.getElementById('profileHyperlink').className = '';
 		document.getElementById('logoutHyperlink').className = '';
 	}
@@ -440,6 +488,14 @@ class Logout extends React.Component {
 		super(props);
 		this.signIn = this.signIn.bind(this);
 	}
+	componentDidMount() {
+		document.getElementById('homeHyperlink').className = '';
+		document.getElementById('addHyperLink').className = '';
+		document.getElementById('myPostsHyperLink').className = '';
+		document.getElementById('categoryHyperlink').className = '';
+		document.getElementById('profileHyperlink').className = '';
+		document.getElementById('logoutHyperlink').className = 'active';
+	}
 	signIn() {
 		window.location.assign('/');
 	}
@@ -464,6 +520,7 @@ ReactDOM.render(
 		<Route component={ShowPostAll} path='/' />
 		<Route component={ShowPost} path='/myPosts' />
 		<Route component={AddPost} path='/addPost(/:id)' />
+		<Route component={AddCategory} path='/addCategory' />
 		<Route component={ShowProfile} path='/showProfile' />
 		<Route component={Logout} path='/logout' />
 	</Router>,
