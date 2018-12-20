@@ -35,7 +35,7 @@ module.exports = {
 						name: categoryName
 					},
 					function(err, result) {
-						console.log('Saved the tag details.');
+						console.log('Saved the category details.');
 						if (err == null) {
 							callback(true);
 						} else {
@@ -58,7 +58,7 @@ module.exports = {
 			}
 		);
 	},
-	updatePost: function(id, title, content, callback) {
+	updatePost: function(id, title, content, category, callback) {
 		MongoClient.connect(
 			url,
 			function(err, db) {
@@ -67,7 +67,8 @@ module.exports = {
 					{
 						$set: {
 							title: title,
-							content: content
+							content: content,
+							category: category
 						}
 					},
 					function(err, result) {

@@ -94,8 +94,8 @@ app.post('/addpost', function(req, res) {
 			res.send(result);
 		});
 	} else {
-		console.log('update', title, content, email);
-		post.updatePost(id, title, content, category, email, function(result) {
+		console.log('update', title, content, category, email);
+		post.updatePost(id, title, content, category, function(result) {
 			res.send(result);
 		});
 	}

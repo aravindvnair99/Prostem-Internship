@@ -18,7 +18,7 @@ class AddPost extends React.Component {
 			title: '',
 			content: '',
 			email: '',
-			categories: '',
+			categories: [],
 			id: ''
 		};
 	}
@@ -38,13 +38,12 @@ class AddPost extends React.Component {
 		axios
 			.post('/getProfile', {})
 			.then(function(response) {
-				console.log(response);
 				if (response) {
 					self.setState({ email: response.data.email });
 				}
 			})
 			.catch(function(error) {
-				console.log('error is ', error);
+				console.log('Error is ', error);
 			});
 	}
 	getCategories() {
@@ -144,7 +143,7 @@ class AddPost extends React.Component {
 								className='form-control'
 								value={this.state.category}
 								onChange={this.handleCategoryChange}>
-								<option value='0'>Select Tag</option>
+								<option value='0'>Select Category</option>
 								{this.state.categories.map(
 									function(category, i) {
 										return (
@@ -191,7 +190,7 @@ class AddCategory extends React.Component {
 		document.getElementById('logoutHyperlink').className = '';
 	}
 	handleCategoryChange(e) {
-		this.setState({ tag: e.target.value });
+		this.setState({ category: e.target.value });
 	}
 	addCategory() {
 		axios
@@ -199,7 +198,8 @@ class AddCategory extends React.Component {
 				category: this.state.category
 			})
 			.then(function(response) {
-				console.log('reponse from add tag is ', response);
+				console.log('reponse from add category is ', response);
+				hashHistory.push('/');
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -301,7 +301,6 @@ class ShowProfile extends React.Component {
 		axios
 			.post('/getProfile', {})
 			.then(function(response) {
-				console.log(response);
 				if (response) {
 					self.setState({ firstname: response.data.firstname });
 					self.setState({ lastname: response.data.lastname });
@@ -417,7 +416,6 @@ class ShowPost extends React.Component {
 		axios
 			.post('/getPost', {})
 			.then(function(response) {
-				console.log('res is ', response);
 				self.setState({ posts: response.data });
 			})
 			.catch(function(error) {
@@ -501,7 +499,6 @@ class ShowPostAll extends React.Component {
 		axios
 			.post('/getPostAll', {})
 			.then(function(response) {
-				console.log('res is ', response);
 				self.setState({ postsAll: response.data });
 			})
 			.catch(function(error) {

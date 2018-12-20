@@ -340,7 +340,6 @@ class ShowPostAll extends React.Component {
 		axios
 			.post('/getPostAll', {})
 			.then(function(response) {
-				console.log('res is ', response);
 				self.setState({ postsAll: response.data });
 			})
 			.catch(function(error) {
