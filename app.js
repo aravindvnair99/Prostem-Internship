@@ -35,7 +35,7 @@ app.post('/signin', function(req, res) {
 		if (result) {
 			sessions.username = user_name;
 			res.send('success');
-		}
+		} else res.send('error');
 	});
 });
 

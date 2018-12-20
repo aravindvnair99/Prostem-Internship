@@ -27,13 +27,8 @@ class Signin extends React.Component {
 			})
 			.then(function(response) {
 				if (response.data == 'success') {
-					alert('Correct credentials.');
 					window.location.assign('/home');
-				} else if (response.data == null) {
-					console.log(response);
-					alert('Wrong credentials.');
 				} else {
-					console.log(response);
 					alert('Wrong credentials.');
 				}
 			})
