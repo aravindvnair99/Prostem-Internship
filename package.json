@@ -46,6 +46,6 @@
 		"express": "^4.17.1",
 		"express-session": "^1.17.0",
 		"jsonwebtoken": "^8.5.1",
-		"mongodb": "^2.2.30"
+		"mongodb": "^3.5.2"
 	}
 }
